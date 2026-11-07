@@ -74,6 +74,8 @@
 
 - 有想法、照片、记录，直接提 PR
 - 线上讨论走 iMeeting
+- 不会用 PR？直接开 Issue 写清楚想改什么，维护者帮你放上去
+- 具体做法见 [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ## 活动时间线
 
