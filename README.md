@@ -58,9 +58,16 @@
 
 本站是 CP 计划的官方网站，第一版是一个活动页：点进来像一张活动海报邀请，往下展看到时间、参与方式、猫屋共创过程。
 
-- 技术：TypeScript + Vite 静态站，部署在 Cloudflare Pages（推送到 main 分支自动部署）
-- 不用 GitHub Pages
-- 网址：https://cat-planet-of-nantang.pages.dev
+- 网址：https://cat-planet.imeeting.club（备用：https://cat-planet-of-nantang.pages.dev）
+- 技术：TypeScript + Vite 静态站，部署在 Cloudflare Pages（不用 GitHub Pages）
+
+### 分支与发布：怎么区分测试版和正式版
+
+- **main 分支＝正式版**：对应 https://cat-planet.imeeting.club。`main` 受 Ruleset `protect-main` 保护，任何人都不能直接推送，改动一律走 PR；PR 合并进 `main` 后正式站自动重新部署。
+- **dev 分支＝测试版**：长期存在的分支，所有改动先合到 `dev`，在预览站验证过再合到 `main`。
+- **功能分支**：改东西时新开一个分支（例如 `update-cats`），提 PR 合到 `dev`，合完分支就可以删了。
+- **一眼分辨**：网站会显示自己是哪个 Git 版本。正式版（main）只在页脚留一行小字「正式版 · main @ 提交号」；预览版（其他分支）页面最顶上会挂一条橘色横幅「预览版 · 分支名 @ 提交号 · 这不是正式站」。
+- **预览网址**：每个 PR，Cloudflare Pages 都会自动建一个预览部署（`*.pages.dev` 网址，在 PR 页面里会给出），先在预览上看过没问题再合并。`preview.cat-planet.imeeting.club`（指到 `dev` 分支）正在设置中。
 
 ## 怎么参与
 
