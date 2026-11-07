@@ -19,7 +19,7 @@
 1. 在一個功能分支上改（自己的 Fork，或倉庫裡新開一個分支）。
 2. 開一個 PR 合到 `dev`，寫清楚改了什麼、為什麼改。
 3. **Cloudflare 會自動給這個 PR 建一個預覽網址**（見下面「先預覽再上線」），先看過沒問題再合併到 `dev`。
-4. `dev` 上的內容在預覽站（`preview.cat-planet.imeeting.club`，設置中）驗證過後，再從 `dev` 開 PR 合到 `main`，正式站才更新。
+4. `dev` 上的內容在預覽站（`preview.cat-planet.imeeting.club`，已啟用）驗證過後，再從 `dev` 開 PR 合到 `main`，正式站才更新。
 
 ## 两种参与方式
 

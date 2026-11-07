@@ -67,7 +67,7 @@
 - **dev 分支＝测试版**：长期存在的分支，所有改动先合到 `dev`，在预览站验证过再合到 `main`。
 - **功能分支**：改东西时新开一个分支（例如 `update-cats`），提 PR 合到 `dev`，合完分支就可以删了。
 - **一眼分辨**：网站会显示自己是哪个 Git 版本。正式版（main）只在页脚留一行小字「正式版 · main @ 提交号」；预览版（其他分支）页面最顶上会挂一条橘色横幅「预览版 · 分支名 @ 提交号 · 这不是正式站」。
-- **预览网址**：每个 PR，Cloudflare Pages 都会自动建一个预览部署（`*.pages.dev` 网址，在 PR 页面里会给出），先在预览上看过没问题再合并。`preview.cat-planet.imeeting.club`（指到 `dev` 分支）正在设置中。
+- **预览网址**：每个 PR，Cloudflare Pages 都会自动建一个预览部署（`*.pages.dev` 网址，在 PR 页面里会给出），先在预览上看过没问题再合并。`preview.cat-planet.imeeting.club`（指到 `dev` 分支，已启用）。
 
 ## 怎么参与
 
