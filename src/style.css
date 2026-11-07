@@ -73,3 +73,19 @@ footer {
   font-size: 0.9rem;
   text-align: center;
 }
+
+/* 版本标识：预览版顶部的显眼横幅 */
+.version-banner {
+  background: #f59e0b;
+  color: #1f2937;
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+/* 正式版页脚的版本小字 */
+footer .version {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
