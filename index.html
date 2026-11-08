@@ -2,26 +2,44 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="喵星计划 / Cat Planet — 开创喵星，欢迎建设喵星。眼前先做的是「小猫过冬猫屋计划」：呦唬和她的 7 只小猫即将入冬，2026 年 11 月 15–18 日，带孩子一起为它们搭一个家。" />
     <title>喵星计划 · Cat Planet — 开创喵星</title>
+    <!-- PWA：可以安装为手机 web app -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#ffc53d" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="喵星计划" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
     <main>
-      <!-- 海报邀请 -->
+      <!-- 主视觉：一张图就是首页 -->
       <header class="hero">
-        <p class="eyebrow">开创喵星 · 欢迎建设喵星</p>
-        <h1>喵星计划<br /><span class="en">Cat Planet</span></h1>
-        <p class="tagline">眼前先做的是「小猫过冬猫屋计划」</p>
-        <p class="tagline">呦唬和她的 7 只小猫，冬天快来了</p>
-        <p class="dates">2026 年 11 月 15–18 日 · 南塘</p>
-        <p class="invite">带孩子一起，为它们搭一个家。来不来都可以。</p>
-        <a class="cta" href="#planet">先看看喵星是怎么回事 ↓</a>
+        <figure class="hero-photo">
+          <img
+            src="/cats/cats-sleeping-red-blanket.jpg"
+            alt="呦唬和孩子们挤在红毯子上睡觉"
+            fetchpriority="high"
+          />
+          <figcaption class="hero-caption">
+            <p class="eyebrow">开创喵星 · 欢迎建设喵星</p>
+            <h1>喵星计划<br /><span class="en">Cat Planet</span></h1>
+            <p class="tagline">眼前先做的是「小猫过冬猫屋计划」</p>
+            <p class="tagline">呦唬和她的 7 只小猫，冬天快来了</p>
+            <p class="dates">2026 年 11 月 15–18 日 · 南塘</p>
+            <p class="invite">带孩子一起，为它们搭一个家。来不来都可以。</p>
+          </figcaption>
+        </figure>
+        <p class="hero-hint">👇 点下面的图，看看里面有什么</p>
       </header>
 
       <!-- 喵星是什么 -->
-      <section id="planet">
+      <section id="planet" class="intro">
         <h2>喵星是什么</h2>
         <p>
           喵星计划（Cat Planet）是一个大计划，下面可能会有很多 program。
@@ -34,27 +52,200 @@
         </p>
       </section>
 
-      <!-- 故事 -->
-      <section id="story">
-        <h2>小猫过冬猫屋计划：这件事是怎么来的</h2>
-        <p>
-          去年在南塘村生活时，遇到一只猫，叫<strong>呦唬</strong>。后来它陆陆续续生下了
-          <strong>7 只小猫</strong>。从去年 10 月到今年 5 月，店里一直在做繁育孵化，
-          猫越来越多。
-        </p>
-        <p>
-          现在即将入冬。10 月上旬，几所高中的校长号召大家一起买猫粮；
-          戴姐觉得，可以带着孩子们一起来。于是这件事就串起来了：
-          <strong>趁 11 月 16–18 日秋假，带孩子们一起做一个猫屋。</strong>
-        </p>
-        <p>
-          猫屋具体怎么做、怎么构思，目前还没深入探讨——就是一个轻规划的过程。
-          先把局攒起来，细节大家一起来定。
-        </p>
-      </section>
+      <!-- 可点的图：点一张，展开一块内容 -->
+      <nav class="tiles" aria-label="活动内容">
+        <!-- 猫猫的故事 -->
+        <section class="tile tile-cats" id="tile-cats">
+          <button class="tile-head" aria-expanded="false" aria-controls="panel-cats">
+            <img
+              src="/cats/kittens-looking-camera.jpg"
+              alt="小猫们挤在毛窝里看镜头"
+              loading="lazy"
+            />
+            <span class="tile-label">
+              <span class="tile-title">猫猫的故事</span>
+              <span class="tile-sub">14 只猫，都在南塘素社小院</span>
+            </span>
+            <span class="tile-plus" aria-hidden="true">＋</span>
+          </button>
+          <div class="tile-panel" id="panel-cats">
+            <div class="tile-panel-inner">
+              <h3>小猫过冬猫屋计划：这件事是怎么来的</h3>
+              <p>
+                去年在南塘村生活时，遇到一只猫，叫<strong>呦唬</strong>。后来它陆陆续续生下了
+                <strong>7 只小猫</strong>。从去年 10 月到今年 5 月，店里一直在做繁育孵化，
+                猫越来越多。
+              </p>
+              <p>
+                现在即将入冬。10 月上旬，几所高中的校长号召大家一起买猫粮；
+                代洁觉得，可以带着孩子们一起来。于是这件事就串起来了：
+                <strong>趁 11 月 16–18 日秋假，带孩子们一起做一个猫屋。</strong>
+              </p>
+              <p>
+                猫屋具体怎么做、怎么构思，目前还没深入探讨——就是一个轻规划的过程。
+                先把局攒起来，细节大家一起来定。
+              </p>
+              <div class="photo-strip">
+                <img src="/cats/youhu-garden.jpg" alt="呦唬坐在院子里" loading="lazy" />
+                <img src="/cats/kittens-sleeping-youhu.jpg" alt="小猫们挨着呦唬睡觉" loading="lazy" />
+                <img src="/cats/cats-sleeping-red-blanket-wide.jpg" alt="猫们挤在红毯子上" loading="lazy" />
+                <img src="/cats/kittens-fluffy-bed.jpg" alt="小猫们挤在毛窝里" loading="lazy" />
+              </div>
+              <h3>猫咪们</h3>
+              <p>南塘素社小院现在有 14 只猫。每一只都有来历：</p>
+              <ol class="cats">
+                <li><strong>呦唬</strong>（母）：第一只遇到的猫，类似金渐层。今年 8 月 21 日生下 7 只小猫（五黑二黄），都顺利存活、脱离哺乳期。</li>
+                <li><strong>咪咪</strong>（公）：黑色的猫，月月（杨文月）从家里带来南塘素社小院。</li>
+                <li><strong>图图</strong>：艺术共创营期间陆续来的猫。</li>
+                <li><strong>芝麻</strong>：艺术共创营期间陆续来的猫。</li>
+                <li><strong>蛋黄</strong>：文月收养的猫。</li>
+                <li><strong>心祈貳</strong>：呦唬的孩子。9 月底只剩 5 只（3 黑 2 黄），这是其中之一。</li>
+                <li><strong>心祈寺</strong>：呦唬的孩子。</li>
+                <li><strong>心祈伍</strong>：呦唬的孩子。</li>
+                <li><strong>心祈陸</strong>：呦唬的孩子。</li>
+                <li><strong>心祈日</strong>：呦唬的孩子。</li>
+                <li><strong>奶香泡</strong>：白腹黄背的猫。</li>
+                <li><strong>马泡</strong>：伦峰老师在南塘小住期间捡的猫，后脚双腿瘫痪，只能用前二脚爬行。</li>
+                <li><strong>小黄豆</strong>：深橘色的猫，约一个月大。11 月初乡亲刘姨家里的猫生崽，母猫没有奶水、死了几只崽，最后一只带来素社小院先养着，现在会吃会喝也会跑了。</li>
+                <li><strong>黑熊</strong>：文君（振哥的哥）带来的猫，很粘人，穿着黑披肩的白底猫。</li>
+              </ol>
+              <p>照片陆续更新在这里。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 猫屋 -->
+        <section class="tile tile-cathouse" id="tile-cathouse">
+          <button class="tile-head" aria-expanded="false" aria-controls="panel-cathouse">
+            <img
+              src="/cats/kittens-basket.jpg"
+              alt="两只小猫挤在藤篮里睡觉"
+              loading="lazy"
+            />
+            <span class="tile-label">
+              <span class="tile-title">猫屋</span>
+              <span class="tile-sub">和孩子一起动手做，11 月 15 日进场</span>
+            </span>
+            <span class="tile-plus" aria-hidden="true">＋</span>
+          </button>
+          <div class="tile-panel" id="panel-cathouse">
+            <div class="tile-panel-inner">
+              <p>木工老师推动，和孩子一起动手做。材料费不多，主要用丙烯。</p>
+              <p>过程、照片和记录会在 11 月 15–18 日陆续更新在这里。</p>
+              <p>
+                <strong>11 月 15 日建设场景</strong>：孩子＋创新老师＋木工师傅＋猫，
+                一起进场，动手打造猫屋。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 时间线 -->
+        <section class="tile tile-timeline" id="tile-timeline">
+          <button class="tile-head" aria-expanded="false" aria-controls="panel-timeline">
+            <img
+              src="/cats/youhu-kittens-garden.jpg"
+              alt="呦唬带着小猫在院子里"
+              loading="lazy"
+            />
+            <span class="tile-label">
+              <span class="tile-title">时间线</span>
+              <span class="tile-sub">11 月 8–9 日线上会 · 11 月 15–18 日动手</span>
+            </span>
+            <span class="tile-plus" aria-hidden="true">＋</span>
+          </button>
+          <div class="tile-panel" id="panel-timeline">
+            <div class="tile-panel-inner">
+              <ol class="timeline">
+                <li>
+                  <time>11 月 8–9 日</time>
+                  <h3>线上会（会前）</h3>
+                  <p>集中讨论 16 号活动怎么做。决策会，不是讨论会。</p>
+                </li>
+                <li>
+                  <time>11 月 15 日</time>
+                  <h3>建设场景</h3>
+                  <p>孩子＋创新老师＋木工师傅＋猫，一起进场，动手打造猫屋。</p>
+                </li>
+                <li>
+                  <time>11 月 16–18 日</time>
+                  <h3>快闪 P.B.L（秋假）</h3>
+                  <p>项目式学习，三天快闪。每天的进展会更新在这里。</p>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- 怎么参与 -->
+        <section class="tile tile-join" id="tile-join">
+          <button class="tile-head" aria-expanded="false" aria-controls="panel-join">
+            <img
+              src="/cats/cats-eating.jpg"
+              alt="猫们围在一起吃饭"
+              loading="lazy"
+            />
+            <span class="tile-label">
+              <span class="tile-title">怎么参与</span>
+              <span class="tile-sub">面向成年人 · 先打通家长这一层</span>
+            </span>
+            <span class="tile-plus" aria-hidden="true">＋</span>
+          </button>
+          <div class="tile-panel" id="panel-join">
+            <div class="tile-panel-inner">
+              <p>这份宣传主要面向成年人——先打通家长这一层，把活动宣传出去。</p>
+              <ul>
+                <li><strong>家长</strong>：带孩子来参与，约 15 个孩子、3–4 个亲子家庭；不收费、食宿自理；来不来都可以</li>
+                <li><strong>过往的共创伙伴</strong>：现场参与，也可以捐款捐物，共同筹谋推进</li>
+                <li><strong>记录</strong>：整个过程做好记录，这本身就是一个很有意思的过程</li>
+              </ul>
+              <h3>参与的人</h3>
+              <ul>
+                <li><strong>杨天亮</strong>：阜南亲情高中校长。10 月上旬号召大家一起买猫粮。</li>
+                <li><strong>代洁</strong>：老师。提议带着孩子们一起来做猫屋。</li>
+                <li><strong>贝拉</strong>：孩子们的老师。</li>
+                <li><strong>程家俊</strong>：木艺匠人，带着孩子们一起动手做猫屋。</li>
+              </ul>
+              <p>
+                有想法、照片、记录，欢迎直接到 GitHub 提 PR；
+                线上讨论走 iMeeting。
+              </p>
+              <p>
+                <a href="https://github.com/iMeetingClub/cat-planet-of-nantang">GitHub 仓库 ↗</a>
+                ·
+                <a href="https://imeeting.co">iMeeting ↗</a>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 捐助 -->
+        <section class="tile tile-donate" id="tile-donate">
+          <button class="tile-head" aria-expanded="false" aria-controls="panel-donate">
+            <img
+              src="/cats/youhu-kittens-eating.jpg"
+              alt="呦唬带着小猫们围着吃饭"
+              loading="lazy"
+            />
+            <span class="tile-label">
+              <span class="tile-title">捐助</span>
+              <span class="tile-sub">接受猫粮、猫砂捐助</span>
+            </span>
+            <span class="tile-plus" aria-hidden="true">＋</span>
+          </button>
+          <div class="tile-panel" id="panel-donate">
+            <div class="tile-panel-inner">
+              <p>接受猫粮、猫砂捐助。捐助方式待补充。</p>
+              <p>
+                经费：第四期费用一部分＋第三期剩余；材料费不多（主要丙烯）。
+              </p>
+            </div>
+          </div>
+        </section>
+      </nav>
 
       <!-- 精神 -->
-      <section id="spirit">
+      <section id="spirit" class="intro">
         <h2>众人拾柴火焰高</h2>
         <p>
           这有点像「石头汤」：每个人带一点东西来，一起煮出一锅汤。
@@ -67,84 +258,8 @@
         </p>
       </section>
 
-      <!-- 猫咪们 -->
-      <section id="cats">
-        <h2>猫咪们</h2>
-        <p>南塘素社小院现在有 14 只猫。每一只都有来历：</p>
-        <ol class="cats">
-          <li><strong>呦唬</strong>（母）：第一只遇到的猫，类似金渐层。今年 8 月 21 日生下 7 只小猫（五黑二黄），都顺利存活、脱离哺乳期。</li>
-          <li><strong>咪咪</strong>（公）：黑色的猫，月月（杨文月）从家里带来南塘素社小院。</li>
-          <li><strong>图图</strong>：艺术共创营期间陆续来的猫。</li>
-          <li><strong>芝麻</strong>：艺术共创营期间陆续来的猫。</li>
-          <li><strong>蛋黄</strong>：文月收养的猫。</li>
-          <li><strong>心祈貳</strong>：呦唬的孩子。9 月底只剩 5 只（3 黑 2 黄），这是其中之一。</li>
-          <li><strong>心祈寺</strong>：呦唬的孩子。</li>
-          <li><strong>心祈伍</strong>：呦唬的孩子。</li>
-          <li><strong>心祈陸</strong>：呦唬的孩子。</li>
-          <li><strong>心祈日</strong>：呦唬的孩子。</li>
-          <li><strong>奶香泡</strong>：白腹黄背的猫。</li>
-          <li><strong>马泡</strong>：伦峰老师在南塘小住期间捡的猫，后脚双腿瘫痪，只能用前二脚爬行。</li>
-          <li><strong>小黄豆</strong>：深橘色的猫，约一个月大。11 月初乡亲刘姨家里的猫生崽，母猫没有奶水、死了几只崽，最后一只带来素社小院先养着，现在会吃会喝也会跑了。</li>
-          <li><strong>黑熊</strong>：文君（振哥的哥）带来的猫，很粘人，穿着黑披肩的白底猫。</li>
-        </ol>
-        <p>照片陆续更新在这里。</p>
-      </section>
-
-      <!-- 参与的人 -->
-      <section id="people">
-        <h2>参与的人</h2>
-        <ul>
-          <li><strong>杨天亮</strong>：阜南亲情高中校长。10 月上旬号召大家一起买猫粮。</li>
-          <li><strong>代洁</strong>：老师。提议带着孩子们一起来做猫屋。</li>
-          <li><strong>贝拉</strong>：孩子们的老师。</li>
-          <li><strong>程家俊</strong>：木艺匠人，带着孩子们一起动手做猫屋。</li>
-        </ul>
-      </section>
-
-      <!-- 时间线 -->
-      <section id="timeline">
-        <h2>时间线</h2>
-        <ol class="timeline">
-          <li>
-            <time>11 月 8–9 日</time>
-            <h3>线上会（会前）</h3>
-            <p>集中讨论 16 号活动怎么做。决策会，不是讨论会。</p>
-          </li>
-          <li>
-            <time>11 月 15 日</time>
-            <h3>建设场景</h3>
-            <p>孩子＋创新老师＋木工师傅＋猫，一起进场，动手打造猫屋。</p>
-          </li>
-          <li>
-            <time>11 月 16–18 日</time>
-            <h3>快闪 P.B.L（秋假）</h3>
-            <p>项目式学习，三天快闪。每天的进展会更新在这里。</p>
-          </li>
-        </ol>
-      </section>
-
-      <!-- 参与方式 -->
-      <section id="join">
-        <h2>怎么参与</h2>
-        <p>这份宣传主要面向成年人——先打通家长这一层，把活动宣传出去。</p>
-        <ul>
-          <li><strong>家长</strong>：带孩子来参与，约 15 个孩子、3–4 个亲子家庭；不收费、食宿自理；来不来都可以</li>
-          <li><strong>过往的共创伙伴</strong>：现场参与，也可以捐款捐物，共同筹谋推进</li>
-          <li><strong>记录</strong>：整个过程做好记录，这本身就是一个很有意思的过程</li>
-        </ul>
-        <p>
-          有想法、照片、记录，欢迎直接到 GitHub 提 PR；
-          线上讨论走 iMeeting。
-        </p>
-        <p>
-          <a href="https://github.com/iMeetingClub/cat-planet-of-nantang">GitHub 仓库 ↗</a>
-          ·
-          <a href="https://imeeting.co">iMeeting ↗</a>
-        </p>
-      </section>
-
       <!-- 协作 -->
-      <section id="collaborate">
+      <section id="collaborate" class="intro">
         <h2>一起改这个网站</h2>
         <p>
           这只是一版简单的初稿草案，后续需要大家一起来共创和设定。
@@ -157,19 +272,6 @@
           ·
           <a href="https://github.com/iMeetingClub/cat-planet-of-nantang">到 GitHub 提 PR ↗</a>
         </p>
-      </section>
-
-      <!-- 猫屋 -->
-      <section id="cathouse">
-        <h2>猫屋</h2>
-        <p>木工老师推动，和孩子一起动手做。材料费不多，主要用丙烯。</p>
-        <p>过程、照片和记录会在 11 月 15–18 日陆续更新在这里。</p>
-      </section>
-
-      <!-- 捐助 -->
-      <section id="donate">
-        <h2>捐助</h2>
-        <p>接受猫粮、猫砂捐助。捐助方式待补充。</p>
       </section>
 
       <footer>
