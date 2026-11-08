@@ -3,6 +3,7 @@
 
 declare const __BRANCH__: string;
 declare const __COMMIT__: string;
+declare const __VERSION__: string;
 
 const year = new Date().getFullYear();
 
@@ -49,25 +50,33 @@ function setupTiles(): void {
   });
 }
 
-// 版本标识：让人一眼分清这是测试版还是正式版。
-// - 正式版（main）：只在页脚留一行小字「正式版 · main @ 短 SHA」。
-// - 预览版（其他分支）：页面最顶上挂一条显眼的横幅，写清分支名和提交号。
+// 版本标识：让人一眼分清这是测试版还是正式版，以及是哪个版号。
+// - 正式版（main）：标题下方挂一个版号徽章「v0.7.0 · main @ 短 SHA」，页脚也留一行小字。
+// - 预览版（其他分支）：页面最顶上挂一条显眼的横幅，写清版号、分支名和提交号。
 function showVersionBanner(): void {
   const branch = __BRANCH__;
   const commit = __COMMIT__;
+  const version = `v${__VERSION__}`;
   if (branch === 'main') {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+      const badge = document.createElement('p');
+      badge.className = 'version-badge';
+      badge.textContent = `${version} · ${branch} @ ${commit}`;
+      hero.appendChild(badge);
+    }
     const footer = document.querySelector('footer');
     if (footer) {
       const p = document.createElement('p');
       p.className = 'version';
-      p.textContent = `正式版 · ${branch} @ ${commit}`;
+      p.textContent = `正式版 · ${version} · ${branch} @ ${commit}`;
       footer.appendChild(p);
     }
     return;
   }
   const banner = document.createElement('div');
   banner.className = 'version-banner';
-  banner.textContent = `预览版 · ${branch} @ ${commit} · 这不是正式站`;
+  banner.textContent = `预览版 · ${version} · ${branch} @ ${commit} · 这不是正式站`;
   document.body.prepend(banner);
 }
 
