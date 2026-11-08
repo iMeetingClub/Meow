@@ -334,3 +334,16 @@ footer .version {
   .tile-panel { transition: none; }
   .tile-plus { transition: none; }
 }
+
+/* 正式版标题下方的版号徽章 */
+.version-badge {
+  display: inline-block;
+  margin: 14px 0 0;
+  padding: 4px 12px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: var(--card);
+}
