@@ -1,9 +1,8 @@
-# 喵星计划 / Cat Planet
+# meow 生活 / MeoW Life
 
-开创喵星，欢迎建设喵星。
+这不是一个计划，这是一种生活。
 
-喵星计划（Cat Planet）是一个大计划，下面可能会有很多 program。
-眼前先做的是「小猫过冬猫屋计划」，未来还有什么还不晓得。
+meow 生活是人与人、人与宠物之间一种生活方式的构建。**MeoW 星是常驻的基础，活动是季节性、周期性的**——眼前当前的一季是「小猫过冬猫屋计划」，下一季会用同样的结构长出来。
 
 ## 这是怎么来的
 
@@ -56,7 +55,7 @@
 
 ## 网站
 
-本站是 CP 计划的官方网站，第一版是一个活动页：点进来像一张活动海报邀请，往下展看到时间、参与方式、猫屋共创过程。
+本站是 meow 生活的官方网站，第一版是一个活动页：点进来像一张活动海报邀请，往下展看到时间、参与方式、猫屋共创过程。
 
 - 网址：https://cat-planet.imeeting.club（备用：https://cat-planet-of-nantang.pages.dev）
 - 技术：TypeScript + Vite 静态站，部署在 Cloudflare Pages（不用 GitHub Pages）
@@ -68,6 +67,37 @@
 - **功能分支**：改东西时新开一个分支（例如 `update-cats`），提 PR 合到 `dev`，合完分支就可以删了。
 - **一眼分辨**：网站会显示自己是哪个 Git 版本。正式版（main）只在页脚留一行小字「正式版 · main @ 提交号」；预览版（其他分支）页面最顶上会挂一条橘色横幅「预览版 · 分支名 @ 提交号 · 这不是正式站」。
 - **预览网址**：每个 PR，Cloudflare Pages 都会自动建一个预览部署（`*.pages.dev` 网址，在 PR 页面里会给出），先在预览上看过没问题再合并。`preview.cat-planet.imeeting.club`（指到 `dev` 分支，已启用）。
+
+## 插画风格选型
+
+全站插画用同一套统一风格（2026-11-08 定型）：
+
+- **风格**：FE-036（#205）Chinese Pet Deadpan Cartoon，国风宠物冷幽默手绘（参考白茶）——纸上手绘墨线（有停顿、有笔压）、透明国画水色叠染与纸纹肌理、留白透气。
+- **版型**：SC-014 留白驱动主视觉信息卡——大面积留白、主视觉优先、信息穿插在留白里。
+- **主题色**：C-34 奶油白（Cream White）——轻柔纯净，留下呼吸感。
+
+选型来源：[yang0/handraw-style](https://github.com/yang0/handraw-style)（手绘风格编号画廊＋双语提示词库：368 种风格、170 种版型、36 种主题色）。作者 yang0，许可宽松可商用，需保留作者与仓库地址。以后新增插画也都用这一套，不再凭感觉换风格。
+
+## 网站地图
+
+网站有 4 个页面（多页结构，简洁网址：`/story.html` → 308 → `/story`、`/stories`、`/cats`）：
+
+| 页面 | 网址 | 名字 | 说明 |
+| --- | --- | --- | --- |
+| 主页 | `/` | 整点meow活 | MeoW 星是底，活动是季节；当前一季是猫屋搭建 |
+| 故事页 | `/story` | Meow传 | 呦唬怎么开始，meow 生活的起点 |
+| 投稿区 | `/stories` | 与meow星事 | 故事收集中，先放一下；投稿是文字内容，到 GitHub 提 Issue |
+| 猫名录 | `/cats` | Meow名大噪 | 小院里 14 只猫，一猫一卡 |
+
+链接关系：
+
+- 整点meow活 → Meow传、Meow名大噪
+- Meow传 → 整点meow活、与meow星事
+- 与meow星事 → 整点meow活、Meow传
+- Meow名大噪 → 整点meow活、Meow传、与meow星事
+- **与meow星事只能从 Meow传进入；Meow名大噪只有主页一个入口。**
+- 每页页脚都有 GitHub 仓库链接；与meow星事的投稿链接到 [GitHub Issues](https://github.com/iMeetingClub/cat-planet-of-nantang/issues)。
+- 站外链接（GitHub 仓库／Issues、imeeting.co）均已验证可达（200）。
 
 ## 怎么参与
 

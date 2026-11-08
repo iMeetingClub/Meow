@@ -1,26 +1,34 @@
-/* meow 生活 — v0.8 单页式活动主页＋故事页＋喵星事
-   手机优先：单栏、大点按目标；平板 / 电脑再展开成网格。
-   配色取参考海报的亮色：暖黄底、绿、橘、蓝，红毯子红作点缀。
-   蜡笔粉彩：粗糙双线边框、粉彩色块、手绘涂鸦（星星、波浪线），点到为止。 */
+/* meow 生活 — v0.8.4 整站视觉按定型重做
+   定型：FE-036（#205 国风宠物冷幽默手绘）× SC-014（留白驱动主视觉）× C-34 奶油白
+   手绘感来自墨线的顿挫、停顿、笔压变化和纸纹，不是线条的粗重。
+   线条要轻：细、淡墨色（深灰而非纯黑）、1px 发丝线；不要粗黑描边、不要硬阴影。
+   留白要多：卡片、段落之间用空间分隔，不要用重边框和分割线去框。
+   底色：奶油白纸底（C-34），带极淡纸纹；不要粉彩渐变、不要饱和色块。
+   点缀：透明水彩淡染（低饱和、半透明），星星、波浪线等装饰要细、淡、少。
+   手机优先：单栏、大点按目标；平板 / 电脑再展开成网格。 */
 
 :root {
-  --ink: #33302a;
-  --muted: #6b6257;
-  --bg: #fff6d8;
-  --card: #fffdf5;
-  --yellow: #ffc53d;
-  --yellow-soft: #ffe9a8;
-  --green: #1f8a70;
-  --green-soft: #d9efe8;
-  --orange: #e07840;
-  --orange-soft: #fde8d8;
-  --blue: #2f6fed;
-  --blue-soft: #dbe8fd;
-  --red: #e63946;
-  --red-soft: #fde3e5;
-  --line: #e8d9b8;
-  --radius: 20px;
-  --shadow: 0 3px 0 rgba(51, 48, 42, 0.9);
+  /* C-34 奶油白纸底；文字用暖深灰，不用纯黑 */
+  --bg: #fdf9ef;
+  --card: #fffdf6;
+  --ink: #4a4238;
+  --muted: #8d8172;
+  /* 发丝线：极淡的暖灰，只做 1px */
+  --line: #e2d8c3;
+  --line-soft: #ede5d3;
+  /* 主题色只做文字和小标记，全部降饱和、降明度 */
+  --green: #6b8f7a;
+  --orange: #c08a5e;
+  --blue: #7d9bb5;
+  --yellow: #d9a94a;
+  --red: #c47a72;
+  /* 透明水彩淡染：只做背景，低饱和、半透明 */
+  --wash-yellow: rgba(217, 169, 74, 0.07);
+  --wash-green: rgba(107, 143, 122, 0.07);
+  --wash-orange: rgba(192, 138, 94, 0.07);
+  --wash-blue: rgba(125, 155, 181, 0.07);
+  --wash-pink: rgba(196, 122, 114, 0.07);
+  --radius: 14px;
 }
 
 * { box-sizing: border-box; }
@@ -31,8 +39,10 @@ body {
   margin: 0;
   font-family: system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   color: var(--ink);
-  background: var(--bg);
-  line-height: 1.7;
+  background-color: var(--bg);
+  /* 极淡的纸纹，像纸面本身的颗粒，几乎看不见，只是不让底色发死 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.025 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  line-height: 1.8;
 }
 
 img { display: block; max-width: 100%; }
@@ -40,23 +50,36 @@ img { display: block; max-width: 100%; }
 main {
   max-width: 720px;
   margin: 0 auto;
-  padding: 0 16px 64px;
+  padding: 0 16px 72px;
 }
 
 a { color: var(--green); }
 
-h1, h2, h3 { line-height: 1.3; }
+h1, h2, h3 { line-height: 1.35; font-weight: 700; }
+
+/* 段落标题：不要色块 pill，只留文字＋一条细细的手绘波浪下划线 */
+.intro h2, .invites h2, .story-body h2 {
+  margin: 0 0 12px;
+  font-size: 1.3rem;
+}
+
+.intro h2::after, .invites h2::after, .story-body h2::after {
+  content: "";
+  display: block;
+  width: 52px;
+  height: 6px;
+  margin-top: 6px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='6' viewBox='0 0 52 6'%3E%3Cpath d='M1 4 Q 8 1 15 4 T 29 4 T 43 4 T 51 4' fill='none' stroke='%23c08a5e' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
+}
 
 /* ---------- 主视觉 ---------- */
-.hero { padding-top: 20px; }
+.hero { padding-top: 24px; position: relative; }
 
 .hero-photo {
   margin: 0;
-  position: relative;
-  border: 3px solid var(--ink);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: var(--shadow);
 }
 
 .hero-photo img {
@@ -107,46 +130,29 @@ h1, h2, h3 { line-height: 1.3; }
 
 .hero-hint {
   text-align: center;
-  margin: 18px 0 0;
+  margin: 20px 0 0;
   color: var(--muted);
   font-weight: 600;
 }
 
 /* ---------- 段落 ---------- */
-.intro { padding: 28px 4px 4px; }
+.intro { padding: 36px 4px 4px; }
 
-.intro h2 {
-  display: inline-block;
-  margin: 0 0 10px;
-  font-size: 1.35rem;
-  background: var(--yellow);
-  border: 3px solid var(--ink);
-  border-radius: 999px;
-  padding: 4px 18px;
-  box-shadow: 0 2px 0 rgba(51, 48, 42, 0.9);
-  transform: rotate(-1deg);
-}
-
-.intro p { margin: 10px 0; }
+.intro p { margin: 12px 0; }
 
 /* ---------- 可点的图（手风琴） ---------- */
 .tiles {
   display: grid;
-  gap: 18px;
-  margin-top: 24px;
+  gap: 24px;
+  margin-top: 28px;
 }
 
 .tile {
-  border: 3px solid var(--ink);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--card);
-  box-shadow: var(--shadow);
   overflow: hidden;
 }
-
-/* 轻微错开，像随手贴的贴纸 */
-.tile:nth-child(odd) { transform: rotate(-0.6deg); }
-.tile:nth-child(even) { transform: rotate(0.6deg); }
 
 .tile-head {
   display: flex;
@@ -169,7 +175,7 @@ h1, h2, h3 { line-height: 1.3; }
   height: 96px;
   object-fit: cover;
   flex: none;
-  border-right: 3px solid var(--ink);
+  border-right: 1px solid var(--line);
 }
 
 .tile-label { flex: 1; min-width: 0; padding: 10px 0; }
@@ -177,7 +183,7 @@ h1, h2, h3 { line-height: 1.3; }
 .tile-title {
   display: block;
   font-size: 1.3rem;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.3;
 }
 
@@ -188,29 +194,31 @@ h1, h2, h3 { line-height: 1.3; }
   margin-top: 2px;
 }
 
+/* 展开标记：细线圆圈＋淡墨色加号，不要实心黑圆 */
 .tile-plus {
   flex: none;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   margin-right: 14px;
   display: grid;
   place-items: center;
-  font-size: 1.5rem;
-  font-weight: 800;
+  font-size: 1.4rem;
+  font-weight: 400;
   line-height: 1;
-  color: #fff;
-  background: var(--ink);
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
   border-radius: 50%;
   transition: transform 0.25s ease;
 }
 
 .tile.open .tile-plus { transform: rotate(45deg); }
 
-/* 每块卡片一个主题色 */
+/* 每块卡片一个主题色（只做文字） */
 .tile-cats .tile-title { color: var(--orange); }
 .tile-cathouse .tile-title { color: var(--green); }
 .tile-timeline .tile-title { color: var(--blue); }
-.tile-join .tile-title { color: #b7791f; }
+.tile-join .tile-title { color: #a8832f; }
 .tile-donate .tile-title { color: var(--red); }
 
 /* 展开面板：平滑展开，收起时内容不可见、不可点 */
@@ -218,7 +226,7 @@ h1, h2, h3 { line-height: 1.3; }
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.35s ease;
-  border-top: 3px dashed var(--line);
+  border-top: 1px dashed var(--line);
 }
 
 .tile-panel-inner {
@@ -235,20 +243,20 @@ h1, h2, h3 { line-height: 1.3; }
 }
 
 .tile-panel-inner { padding: 0 18px; }
-.tile.open .tile-panel-inner { padding: 18px; }
+.tile.open .tile-panel-inner { padding: 20px 18px; }
 
-.tile-panel-inner h3 { margin: 18px 0 8px; font-size: 1.1rem; }
+.tile-panel-inner h3 { margin: 20px 0 8px; font-size: 1.1rem; }
 .tile-panel-inner h3:first-child { margin-top: 0; }
-.tile-panel-inner p { margin: 10px 0; }
-.tile-panel-inner ul, .tile-panel-inner ol { margin: 10px 0; padding-left: 22px; }
-.tile-panel-inner li { margin: 8px 0; }
+.tile-panel-inner p { margin: 12px 0; }
+.tile-panel-inner ul, .tile-panel-inner ol { margin: 12px 0; padding-left: 22px; }
+.tile-panel-inner li { margin: 10px 0; }
 
 /* 故事里的小照片条：横向滑动 */
 .photo-strip {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   overflow-x: auto;
-  padding: 6px 2px 10px;
+  padding: 6px 2px 12px;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
@@ -258,38 +266,37 @@ h1, h2, h3 { line-height: 1.3; }
   width: 150px;
   height: 150px;
   object-fit: cover;
-  border: 3px solid var(--ink);
-  border-radius: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
   scroll-snap-align: start;
 }
 
-/* 时间线 */
+/* 时间线：不要框，用留白和时间标签分隔 */
 .timeline { list-style: none; padding: 0; }
 .timeline li {
-  background: var(--bg);
-  border: 2px solid var(--ink);
-  border-radius: 14px;
-  padding: 14px 16px;
-  margin: 12px 0;
+  padding: 16px 4px;
+  margin: 0;
+  border-bottom: 1px solid var(--line-soft);
 }
-.timeline time { color: var(--orange); font-weight: 800; }
+.timeline li:last-child { border-bottom: 0; }
+.timeline time { color: var(--orange); font-weight: 700; }
 .timeline h3 { margin: 4px 0; }
 
 /* 猫咪名单 */
 .cats { padding-left: 22px; }
-.cats li { margin: 10px 0; }
+.cats li { margin: 12px 0; }
 
 /* ---------- 页脚 ---------- */
 footer {
-  margin-top: 48px;
-  padding-top: 24px;
-  border-top: 3px dashed var(--line);
+  margin-top: 64px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line-soft);
   color: var(--muted);
   font-size: 0.9rem;
   text-align: center;
 }
 
-/* 版本标识：预览版顶部的显眼横幅 */
+/* 版本标识：预览版顶部的显眼横幅（功能性的，不动） */
 .version-banner {
   background: #f59e0b;
   color: #1f2937;
@@ -307,12 +314,12 @@ footer .version {
 
 /* ---------- 平板 ---------- */
 @media (min-width: 640px) {
-  main { padding: 0 24px 72px; }
+  main { padding: 0 24px 80px; }
 
   .hero-photo img { aspect-ratio: 16 / 10; object-position: center 30%; }
   .hero-caption h1 { font-size: 3.2rem; }
 
-  .tiles { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .tiles { grid-template-columns: 1fr 1fr; gap: 24px; }
   .tile-head img { width: 128px; height: 112px; }
   .tile-head { min-height: 112px; }
 
@@ -336,18 +343,24 @@ footer .version {
   .tile-plus { transition: none; }
 }
 
-/* 正式版标题下方的版号徽章 */
-.version-badge {
-  display: inline-block;
-  margin: 14px 0 0;
-  padding: 4px 12px;
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  background: var(--card);
+/* v0.8.2：插画主视觉——浅色粉彩图上的标题不用深色渐变，改奶油色渐变＋深色字 */
+.hero-illus .hero-caption {
+  background: linear-gradient(to top, rgba(253, 249, 239, 0.97), rgba(253, 249, 239, 0));
+  color: var(--ink);
 }
+
+.hero-illus .hero-caption h1 { text-shadow: none; }
+
+.hero-illus .hero-caption h1 .en,
+.hero-illus .hero-caption .eyebrow,
+.hero-illus .hero-caption .dates { color: var(--green); }
+
+.hero-illus .wordmark g { stroke: var(--ink); }
+.hero-illus .wm-underline { stroke: var(--orange); }
+.hero-illus .wm-star { fill: var(--orange); }
+
+/* v0.8.2：喵花名里五只小猫的共用插画，全宽一条 */
+.kittens-group { grid-column: 1 / -1; }
 
 /* ---------- v0.8：活动主页 ---------- */
 /* 主视觉是整张可点的图，点进故事页 */
@@ -359,73 +372,70 @@ footer .version {
 }
 
 .hero-link:focus-visible .hero-photo {
-  outline: 3px solid var(--yellow);
-  outline-offset: 3px;
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
 }
 
-/* 蜡笔小涂鸦：星星和波浪线，绝对定位在主视觉旁 */
-.hero { position: relative; }
-
+/* 蜡笔小涂鸦：星星和波浪线——细、淡、少 */
 .doodle { position: absolute; pointer-events: none; z-index: 1; }
 
 .doodle-star {
-  width: 34px;
-  height: 34px;
-  top: 8px;
-  right: 6px;
-  fill: var(--yellow);
-  stroke: var(--ink);
-  stroke-width: 1.5;
+  width: 26px;
+  height: 26px;
+  top: 10px;
+  right: 8px;
+  fill: none;
+  stroke: var(--yellow);
+  stroke-width: 1.4;
   transform: rotate(12deg);
+  opacity: 0.75;
 }
 
 .doodle-squiggle {
-  width: 80px;
-  height: 20px;
+  width: 72px;
+  height: 18px;
   bottom: 52px;
   left: 10px;
-  stroke: #fff;
-  stroke-width: 3;
+  stroke: var(--orange);
+  stroke-width: 1.4;
   stroke-linecap: round;
-  opacity: 0.9;
+  opacity: 0.55;
 }
 
-/* 形状的去处：异形卡片（圆角不对称，像随手捏的形状） */
+/* 形状的去处：淡染卡片——极淡的水彩底＋1px 发丝线，不要色块、不要阴影 */
 .shape-card {
-  margin-top: 22px;
-  padding: 22px 20px;
-  background: var(--green-soft);
-  border: 3px solid var(--ink);
-  border-radius: 46% 54% 52% 48% / 52% 46% 54% 48%;
-  box-shadow: var(--shadow);
+  margin-top: 28px;
+  padding: 28px 22px;
+  background: var(--wash-green);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   text-align: center;
 }
 
 .shape-card h2 {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   font-size: 1.3rem;
 }
 
-.shape-card p { margin: 8px 0; }
+.shape-card p { margin: 10px 0; }
 
 .shape-links {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
-  margin: 14px 0 6px;
+  margin: 16px 0 8px;
 }
 
 .shape-link {
   display: inline-block;
   padding: 8px 16px;
-  border: 2px solid var(--ink);
+  border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--card);
   color: var(--ink);
-  font-weight: 800;
+  font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 2px 0 rgba(51, 48, 42, 0.9);
 }
 
 .shape-note {
@@ -433,25 +443,13 @@ footer .version {
   color: var(--muted);
 }
 
-/* 三种参与方式的主题色 */
+/* 三种参与方式的主题色（只做文字） */
 .tile-cloud .tile-title { color: var(--blue); }
 .tile-local .tile-title { color: var(--green); }
 .tile-care .tile-title { color: var(--orange); }
 
-/* 四句邀请：粉彩 2×2 */
-.invites { padding: 28px 4px 4px; }
-
-.invites h2 {
-  display: inline-block;
-  margin: 0 0 12px;
-  font-size: 1.35rem;
-  background: var(--yellow);
-  border: 3px solid var(--ink);
-  border-radius: 999px;
-  padding: 4px 18px;
-  box-shadow: 0 2px 0 rgba(51, 48, 42, 0.9);
-  transform: rotate(-1deg);
-}
+/* 四句邀请：极淡水彩底＋1px 发丝线，不要色块、不要阴影、不要倾斜 */
+.invites { padding: 36px 4px 4px; }
 
 .invites ul {
   list-style: none;
@@ -459,31 +457,27 @@ footer .version {
   padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 14px;
 }
 
 .invites li {
-  padding: 14px 12px;
-  border: 3px solid var(--ink);
-  border-radius: 16px;
-  font-weight: 800;
+  padding: 16px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-weight: 700;
   font-size: 1.05rem;
   text-align: center;
-  box-shadow: 0 2px 0 rgba(51, 48, 42, 0.9);
 }
 
-.invites li:nth-child(odd) { transform: rotate(-1deg); }
-.invites li:nth-child(even) { transform: rotate(1deg); }
-
-.invite-pink { background: #fde3e5; }
-.invite-blue { background: var(--blue-soft); }
-.invite-green { background: var(--green-soft); }
-.invite-yellow { background: var(--yellow-soft); }
+.invite-pink { background: var(--wash-pink); }
+.invite-blue { background: var(--wash-blue); }
+.invite-green { background: var(--wash-green); }
+.invite-yellow { background: var(--wash-yellow); }
 
 /* ---------- v0.8：故事页 / 喵星事 ---------- */
-.page-head { padding-top: 20px; }
+.page-head { padding-top: 24px; }
 
-.page-head .back { margin: 0 0 12px; font-size: 0.95rem; }
+.page-head .back { margin: 0 0 14px; font-size: 0.95rem; }
 
 .page-head .eyebrow {
   margin: 0 0 6px;
@@ -494,7 +488,7 @@ footer .version {
 }
 
 .page-head h1 {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   font-size: 2.1rem;
   line-height: 1.2;
 }
@@ -506,33 +500,22 @@ footer .version {
   color: var(--muted);
 }
 
-.story-body { padding: 8px 4px 4px; }
+.story-body { padding: 12px 4px 4px; }
 
-.story-body h2 {
-  display: inline-block;
-  margin: 26px 0 8px;
-  font-size: 1.3rem;
-  background: var(--yellow);
-  border: 3px solid var(--ink);
-  border-radius: 999px;
-  padding: 4px 18px;
-  box-shadow: 0 2px 0 rgba(51, 48, 42, 0.9);
-  transform: rotate(-1deg);
-}
+.story-body h2 { margin: 32px 0 10px; }
 
-.story-body p { margin: 10px 0; }
+.story-body p { margin: 12px 0; }
 
-.story-photo { margin: 18px 0; }
+.story-photo { margin: 22px 0; }
 
 .story-photo img {
   width: 100%;
-  border: 3px solid var(--ink);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
 }
 
 .story-photo figcaption {
-  margin-top: 8px;
+  margin-top: 10px;
   text-align: center;
   font-size: 0.9rem;
   color: var(--muted);
@@ -540,16 +523,16 @@ footer .version {
 
 /* 喵星事：每只猫一行邀请 */
 .cat-invites { padding-left: 22px; }
-.cat-invites li { margin: 12px 0; }
+.cat-invites li { margin: 14px 0; }
 
 /* 页面底部相关链接 */
 .page-nav {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 32px;
-  padding-top: 20px;
-  border-top: 3px dashed var(--line);
+  gap: 12px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line-soft);
 }
 
 .page-nav a {
@@ -557,11 +540,10 @@ footer .version {
   text-decoration: none;
   color: var(--ink);
   background: var(--card);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--line);
   border-radius: 999px;
   padding: 10px 18px;
   text-align: center;
-  box-shadow: 0 2px 0 rgba(51, 48, 42, 0.9);
 }
 
 /* ---------- 平板：v0.8 新增 ---------- */
@@ -572,8 +554,7 @@ footer .version {
 }
 
 /* ---------- v0.8.1：手绘 meow 字标 ---------- */
-/* 字标是内联 SVG 手绘字母（白描边＋黄蜡笔下划线＋小星星），
-   不依赖外部字体，离线也能用。 */
+/* 字标是内联 SVG 手绘字母，不依赖外部字体，离线也能用。 */
 .wordmark {
   width: 178px;
   height: auto;
@@ -583,35 +564,28 @@ footer .version {
 .wordmark-life {
   display: inline-block;
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 700;
   margin-left: 6px;
   transform: rotate(-2deg);
-  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
 }
 
 /* ---------- v0.8.1：喵花名 ---------- */
 .cat-cards {
   display: grid;
-  gap: 18px;
-  margin-top: 20px;
+  gap: 24px;
+  margin-top: 24px;
 }
 
 .cat-card {
-  border: 3px solid var(--ink);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--card);
-  box-shadow: var(--shadow);
   overflow: hidden;
-  padding-bottom: 16px;
+  padding-bottom: 18px;
 }
 
-/* 轻微错开，像随手贴的贴纸 */
-.cat-card:nth-child(odd) { transform: rotate(-0.6deg); }
-.cat-card:nth-child(even) { transform: rotate(0.6deg); }
-
 .cat-media {
-  border-bottom: 3px solid var(--ink);
-  background: var(--yellow-soft);
+  border-bottom: 1px solid var(--line);
 }
 
 .cat-media img {
@@ -628,15 +602,15 @@ footer .version {
   margin: 14px auto;
 }
 
-.doodle-pink { color: #f4b8c1; }
-.doodle-blue { color: #aecdf7; }
-.doodle-green { color: #a8dcc9; }
-.doodle-yellow { color: #f7d774; }
-.doodle-orange { color: #f9c39a; }
-.doodle-lavender { color: #cdbcf0; }
+.doodle-pink { color: #e8b7be; }
+.doodle-blue { color: #b3c8de; }
+.doodle-green { color: #b3d2c2; }
+.doodle-yellow { color: #e8cf8e; }
+.doodle-orange { color: #eec39e; }
+.doodle-lavender { color: #c9bce4; }
 
 .cat-card h3 {
-  margin: 14px 18px 0;
+  margin: 16px 18px 0;
   font-size: 1.4rem;
 }
 
@@ -648,21 +622,21 @@ footer .version {
 }
 
 .cat-card p {
-  margin: 8px 18px 0;
+  margin: 10px 18px 0;
 }
 
 .cats-note {
-  margin-top: 24px;
+  margin-top: 28px;
   text-align: center;
   color: var(--muted);
 }
 
 /* ---------- v0.8.1：喵星事暂缓 ---------- */
 .soon-note {
-  background: var(--yellow-soft);
-  border: 3px dashed var(--ink);
-  border-radius: 16px;
-  padding: 14px 16px;
+  background: var(--wash-yellow);
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  padding: 16px;
   font-weight: 700;
   text-align: center;
 }
