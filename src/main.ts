@@ -1,5 +1,6 @@
-// 喵星计划 / Cat Planet — 活动页
-// v0.7：手绘风可点首页。点一张图，展开一块内容。
+// meow 生活 — 活动主页（index）＋故事页（story）＋喵星事（stories）
+// v0.8：单页式活动主页，点主视觉进故事页；三个页面共用这份逻辑，
+// 按页面上有的元素才运行（没有 .tile 的页面就跳过手风琴）。
 
 declare const __BRANCH__: string;
 declare const __COMMIT__: string;
@@ -51,19 +52,22 @@ function setupTiles(): void {
 }
 
 // 版本标识：让人一眼分清这是测试版还是正式版，以及是哪个版号。
-// - 正式版（main）：标题下方挂一个版号徽章「v0.7.0 · main @ 短 SHA」，页脚也留一行小字。
+// - 正式版（main）：标题下方挂一个版号徽章「v0.8.0 · main @ 短 SHA」，页脚也留一行小字。
+//   三个页面都适用：主页挂在 .hero 下，故事页 / 喵星事挂在 .page-head 下。
 // - 预览版（其他分支）：页面最顶上挂一条显眼的横幅，写清版号、分支名和提交号。
 function showVersionBanner(): void {
   const branch = __BRANCH__;
   const commit = __COMMIT__;
   const version = `v${__VERSION__}`;
   if (branch === 'main') {
-    const hero = document.querySelector('.hero');
-    if (hero) {
+    const anchor =
+      document.querySelector('.hero') ??
+      document.querySelector('.page-head');
+    if (anchor) {
       const badge = document.createElement('p');
       badge.className = 'version-badge';
       badge.textContent = `${version} · ${branch} @ ${commit}`;
-      hero.appendChild(badge);
+      anchor.appendChild(badge);
     }
     const footer = document.querySelector('footer');
     if (footer) {
