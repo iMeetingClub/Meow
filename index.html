@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="meow 生活 — 人与人、人与宠物之间的一种生活方式的构建。当前活动：喵星搞事情 · 猫屋搭建，2026 年 11 月 15–18 日，南塘。去年 10 月，一只猫闯进了 FC 的出差生活。" />
-    <title>meow 生活 · 喵星搞事情 — 猫屋搭建</title>
+    <meta name="description" content="meow 生活 — 人与人、人与宠物之间的一种生活方式的构建。MeoW 星是底，活动是季节：当前一季，整点meow活 · 猫屋搭建，2026 年 11 月 15–18 日，南塘。去年 10 月，一只猫闯进了 FC 的出差生活。" />
+    <title>整点meow活 · 猫屋搭建 — meow 生活</title>
     <!-- PWA：可以安装为手机 web app -->
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content="#ffc53d" />
@@ -13,7 +13,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="meow 生活" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
@@ -28,9 +28,9 @@
               fetchpriority="high"
             />
             <figcaption class="hero-caption">
-              <p class="eyebrow">喵星搞事情</p>
+              <p class="eyebrow">整点meow活</p>
               <h1>
-                <svg class="wordmark" viewBox="0 0 300 112" role="img" aria-label="meow">
+                <svg class="wordmark" viewBox="0 0 300 112" role="img" aria-label="MeoW">
                   <g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M10 88 C8 60 12 40 20 32 C26 26 32 28 33 38 C34 55 33 72 34 88 C36 64 40 42 48 34 C54 28 60 30 61 40 C62 56 61 72 62 88" />
                     <path d="M122 50 C116 40 104 38 98 44 C92 50 94 60 104 62 C114 64 122 60 122 52 C122 46 118 42 112 42 M96 52 L122 50" />
@@ -41,7 +41,7 @@
                   <path class="wm-star" d="M286 16 L289.5 24 L298 24 L291.5 29.5 L294 38 L286 33 L278 38 L280.5 29.5 L274 24 L282.5 24 Z" fill="#ffc53d" />
                 </svg>
                 <span class="wordmark-life">生活</span><br />
-                <span class="en">meow Life</span>
+                <span class="en">MeoW Life</span>
               </h1>
               <p class="tagline">猫屋搭建</p>
               <p class="dates">2026 年 11 月 15–18 日 · 南塘</p>
@@ -49,19 +49,25 @@
             </figcaption>
           </figure>
         </a>
-        <p class="hero-hint">👆 点图片，看看这个故事是怎么开始的</p>
+        <p class="hero-hint">👆 点图片，进 Meow传</p>
         <!-- 蜡笔小涂鸦 -->
         <svg class="doodle doodle-star" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 L24 15 L36 15 L26 22 L30 34 L20 27 L10 34 L14 22 L4 15 L16 15 Z" /></svg>
         <svg class="doodle doodle-squiggle" viewBox="0 0 80 20" aria-hidden="true"><path d="M2 10 Q 12 2 22 10 T 42 10 T 62 10 T 78 10" fill="none" /></svg>
       </header>
+
+      <!-- 两层结构：MeoW 星是底，活动是季节 -->
+      <section class="shape-card" aria-label="MeoW 星与活动">
+        <h2>MeoW 星是底，活动是季节</h2>
+        <p>MeoW 星是常驻的基础：人与人、人与宠物之间，一种生活方式的构建。活动是季节性、周期性的——猫屋搭建是当前这一季。下一季会用同样的结构，在这里长出来。</p>
+      </section>
 
       <!-- 形状的去处：故事与往期 -->
       <section class="shape-card" aria-label="故事与往期">
         <h2>故事与往期</h2>
         <p>一只猫在去年 10 月闯进了一个人的生活。现在，FC 想邀请更多人，一起来体会这种生活。</p>
         <p class="shape-links">
-          <a class="shape-link" href="/story.html">故事是怎么开始的 →</a>
-          <a class="shape-link" href="/cats.html">喵花名 →</a>
+          <a class="shape-link" href="/story.html">Meow传 →</a>
+          <a class="shape-link" href="/cats.html">Meow名大噪 →</a>
         </p>
         <p class="shape-note">往期活动：猫屋搭建是第一次。下一个活动会用同样的结构，在这里长出来。</p>
       </section>
@@ -147,7 +153,7 @@
         <p>meow 生活 · 南塘，安徽阜阳</p>
         <p>本站用 TypeScript + Vite 构建，部署在 Cloudflare Pages。内容在 GitHub 上迭代。</p>
         <p>
-          <a href="https://github.com/iMeetingClub/cat-planet-of-nantang">GitHub 仓库 ↗</a>
+          欢迎改进：<a href="https://github.com/iMeetingClub/cat-planet-of-nantang/issues">提 Issue ↗</a> 或 <a href="https://github.com/iMeetingClub/cat-planet-of-nantang">发 PR ↗</a>
         </p>
       </footer>
     </main>
