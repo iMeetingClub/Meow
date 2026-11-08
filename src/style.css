@@ -570,3 +570,109 @@ footer .version {
   .page-nav { flex-direction: row; justify-content: space-between; }
   .page-nav a { flex: 1; }
 }
+
+/* ---------- v0.8.1：手绘 meow 字标 ---------- */
+/* 字标是内联 SVG 手绘字母（白描边＋黄蜡笔下划线＋小星星），
+   不依赖外部字体，离线也能用。 */
+.wordmark {
+  width: 178px;
+  height: auto;
+  vertical-align: -0.18em;
+}
+
+.wordmark-life {
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-left: 6px;
+  transform: rotate(-2deg);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- v0.8.1：喵花名 ---------- */
+.cat-cards {
+  display: grid;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.cat-card {
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  padding-bottom: 16px;
+}
+
+/* 轻微错开，像随手贴的贴纸 */
+.cat-card:nth-child(odd) { transform: rotate(-0.6deg); }
+.cat-card:nth-child(even) { transform: rotate(0.6deg); }
+
+.cat-media {
+  border-bottom: 3px solid var(--ink);
+  background: var(--yellow-soft);
+}
+
+.cat-media img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.cat-doodle {
+  display: block;
+  width: 140px;
+  height: 140px;
+  margin: 14px auto;
+}
+
+.doodle-pink { color: #f4b8c1; }
+.doodle-blue { color: #aecdf7; }
+.doodle-green { color: #a8dcc9; }
+.doodle-yellow { color: #f7d774; }
+.doodle-orange { color: #f9c39a; }
+.doodle-lavender { color: #cdbcf0; }
+
+.cat-card h3 {
+  margin: 14px 18px 0;
+  font-size: 1.4rem;
+}
+
+.cat-card .cat-tag {
+  margin: 2px 18px 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--orange);
+}
+
+.cat-card p {
+  margin: 8px 18px 0;
+}
+
+.cats-note {
+  margin-top: 24px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ---------- v0.8.1：喵星事暂缓 ---------- */
+.soon-note {
+  background: var(--yellow-soft);
+  border: 3px dashed var(--ink);
+  border-radius: 16px;
+  padding: 14px 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* ---------- 平板 / 电脑：v0.8.1 新增 ---------- */
+@media (min-width: 640px) {
+  .cat-cards { grid-template-columns: 1fr 1fr; }
+  .wordmark { width: 210px; }
+}
+
+@media (min-width: 960px) {
+  .cat-cards { grid-template-columns: repeat(3, 1fr); }
+}
