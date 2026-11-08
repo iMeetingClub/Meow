@@ -1,74 +1,289 @@
+/* meow 生活 — v0.8 单页式活动主页＋故事页＋喵星事
+   手机优先：单栏、大点按目标；平板 / 电脑再展开成网格。
+   配色取参考海报的亮色：暖黄底、绿、橘、蓝，红毯子红作点缀。
+   蜡笔粉彩：粗糙双线边框、粉彩色块、手绘涂鸦（星星、波浪线），点到为止。 */
+
 :root {
-  --ink: #222;
-  --muted: #666;
-  --accent: #e07840;
-  --bg: #fffaf5;
-  --card: #fff;
-  --line: #eee0d0;
+  --ink: #33302a;
+  --muted: #6b6257;
+  --bg: #fff6d8;
+  --card: #fffdf5;
+  --yellow: #ffc53d;
+  --yellow-soft: #ffe9a8;
+  --green: #1f8a70;
+  --green-soft: #d9efe8;
+  --orange: #e07840;
+  --orange-soft: #fde8d8;
+  --blue: #2f6fed;
+  --blue-soft: #dbe8fd;
+  --red: #e63946;
+  --red-soft: #fde3e5;
+  --line: #e8d9b8;
+  --radius: 20px;
+  --shadow: 0 3px 0 rgba(51, 48, 42, 0.9);
 }
 
 * { box-sizing: border-box; }
 
+html { -webkit-text-size-adjust: 100%; }
+
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   color: var(--ink);
   background: var(--bg);
   line-height: 1.7;
 }
 
-main { max-width: 720px; margin: 0 auto; padding: 0 20px 64px; }
+img { display: block; max-width: 100%; }
 
-a { color: var(--accent); }
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 16px 64px;
+}
+
+a { color: var(--green); }
 
 h1, h2, h3 { line-height: 1.3; }
 
-/* 海报邀请 */
-.hero {
+/* ---------- 主视觉 ---------- */
+.hero { padding-top: 20px; }
+
+.hero-photo {
+  margin: 0;
+  position: relative;
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.hero-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 38%;
+}
+
+.hero-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 56px 20px 20px;
+  background: linear-gradient(to top, rgba(20, 16, 10, 0.82), rgba(20, 16, 10, 0));
+  color: #fff;
   text-align: center;
-  padding: 72px 0 48px;
-  border-bottom: 1px solid var(--line);
 }
 
-.eyebrow { color: var(--muted); letter-spacing: 0.2em; margin: 0 0 12px; }
+.hero-caption .eyebrow {
+  margin: 0 0 6px;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  color: var(--yellow);
+  font-weight: 700;
+}
 
-.hero h1 { font-size: 3rem; margin: 0 0 8px; }
-.hero h1 .en { display: block; font-size: 1.4rem; color: var(--accent); letter-spacing: 0.12em; }
+.hero-caption h1 {
+  margin: 0 0 6px;
+  font-size: 2.6rem;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+}
 
-.tagline { font-size: 1.25rem; margin: 8px 0; }
-.dates { color: var(--muted); margin: 4px 0; }
-.invite { font-size: 1.1rem; margin: 16px 0; }
+.hero-caption h1 .en {
+  display: block;
+  font-size: 1.15rem;
+  letter-spacing: 0.18em;
+  color: var(--yellow);
+  margin-top: 4px;
+}
 
-.cta {
+.hero-caption .tagline { margin: 4px 0; font-size: 1.05rem; font-weight: 600; }
+.hero-caption .dates { margin: 8px 0 2px; font-weight: 700; color: var(--yellow); }
+.hero-caption .invite { margin: 4px 0 0; font-size: 1rem; }
+
+.hero-hint {
+  text-align: center;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* ---------- 段落 ---------- */
+.intro { padding: 28px 4px 4px; }
+
+.intro h2 {
   display: inline-block;
-  margin-top: 12px;
-  padding: 10px 22px;
-  border: 1px solid var(--accent);
+  margin: 0 0 10px;
+  font-size: 1.35rem;
+  background: var(--yellow);
+  border: 3px solid var(--ink);
   border-radius: 999px;
-  text-decoration: none;
+  padding: 4px 18px;
+  box-shadow: 0 2px 0 rgba(51, 48, 42, 0.9);
+  transform: rotate(-1deg);
 }
 
-section { padding: 40px 0 8px; }
-section h2 { font-size: 1.4rem; border-left: 4px solid var(--accent); padding-left: 12px; }
+.intro p { margin: 10px 0; }
 
+/* ---------- 可点的图（手风琴） ---------- */
+.tiles {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.tile {
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* 轻微错开，像随手贴的贴纸 */
+.tile:nth-child(odd) { transform: rotate(-0.6deg); }
+.tile:nth-child(even) { transform: rotate(0.6deg); }
+
+.tile-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 96px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tile-head img {
+  width: 112px;
+  height: 96px;
+  object-fit: cover;
+  flex: none;
+  border-right: 3px solid var(--ink);
+}
+
+.tile-label { flex: 1; min-width: 0; padding: 10px 0; }
+
+.tile-title {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.tile-sub {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.tile-plus {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  margin-right: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+  background: var(--ink);
+  border-radius: 50%;
+  transition: transform 0.25s ease;
+}
+
+.tile.open .tile-plus { transform: rotate(45deg); }
+
+/* 每块卡片一个主题色 */
+.tile-cats .tile-title { color: var(--orange); }
+.tile-cathouse .tile-title { color: var(--green); }
+.tile-timeline .tile-title { color: var(--blue); }
+.tile-join .tile-title { color: #b7791f; }
+.tile-donate .tile-title { color: var(--red); }
+
+/* 展开面板：平滑展开，收起时内容不可见、不可点 */
+.tile-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+  border-top: 3px dashed var(--line);
+}
+
+.tile-panel-inner {
+  overflow: hidden;
+  min-height: 0;
+  visibility: hidden;
+  transition: visibility 0s linear 0.35s;
+}
+
+.tile.open .tile-panel { grid-template-rows: 1fr; }
+.tile.open .tile-panel-inner {
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.tile-panel-inner { padding: 0 18px; }
+.tile.open .tile-panel-inner { padding: 18px; }
+
+.tile-panel-inner h3 { margin: 18px 0 8px; font-size: 1.1rem; }
+.tile-panel-inner h3:first-child { margin-top: 0; }
+.tile-panel-inner p { margin: 10px 0; }
+.tile-panel-inner ul, .tile-panel-inner ol { margin: 10px 0; padding-left: 22px; }
+.tile-panel-inner li { margin: 8px 0; }
+
+/* 故事里的小照片条：横向滑动 */
+.photo-strip {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 6px 2px 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.photo-strip img {
+  flex: none;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 3px solid var(--ink);
+  border-radius: 14px;
+  scroll-snap-align: start;
+}
+
+/* 时间线 */
 .timeline { list-style: none; padding: 0; }
 .timeline li {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 16px 20px;
+  background: var(--bg);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  padding: 14px 16px;
   margin: 12px 0;
 }
-.timeline time { color: var(--accent); font-weight: 600; }
+.timeline time { color: var(--orange); font-weight: 800; }
 .timeline h3 { margin: 4px 0; }
 
+/* 猫咪名单 */
 .cats { padding-left: 22px; }
 .cats li { margin: 10px 0; }
 
+/* ---------- 页脚 ---------- */
 footer {
   margin-top: 48px;
   padding-top: 24px;
-  border-top: 1px solid var(--line);
+  border-top: 3px dashed var(--line);
   color: var(--muted);
   font-size: 0.9rem;
   text-align: center;
@@ -88,4 +303,376 @@ footer {
 footer .version {
   color: var(--muted);
   font-size: 0.85rem;
+}
+
+/* ---------- 平板 ---------- */
+@media (min-width: 640px) {
+  main { padding: 0 24px 72px; }
+
+  .hero-photo img { aspect-ratio: 16 / 10; object-position: center 30%; }
+  .hero-caption h1 { font-size: 3.2rem; }
+
+  .tiles { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .tile-head img { width: 128px; height: 112px; }
+  .tile-head { min-height: 112px; }
+
+  /* 猫猫的故事占满一行，名单比较长 */
+  .tile-cats { grid-column: 1 / -1; }
+}
+
+/* ---------- 电脑 ---------- */
+@media (min-width: 960px) {
+  main { max-width: 960px; }
+
+  .tiles { grid-template-columns: repeat(3, 1fr); }
+  .tile-cats { grid-column: 1 / -1; }
+  .tile-cathouse, .tile-timeline { grid-column: span 1; }
+
+  .photo-strip img { width: 180px; height: 180px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile-panel { transition: none; }
+  .tile-plus { transition: none; }
+}
+
+/* 正式版标题下方的版号徽章 */
+.version-badge {
+  display: inline-block;
+  margin: 14px 0 0;
+  padding: 4px 12px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: var(--card);
+}
+
+/* ---------- v0.8：活动主页 ---------- */
+/* 主视觉是整张可点的图，点进故事页 */
+.hero-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hero-link:focus-visible .hero-photo {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+/* 蜡笔小涂鸦：星星和波浪线，绝对定位在主视觉旁 */
+.hero { position: relative; }
+
+.doodle { position: absolute; pointer-events: none; z-index: 1; }
+
+.doodle-star {
+  width: 34px;
+  height: 34px;
+  top: 8px;
+  right: 6px;
+  fill: var(--yellow);
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  transform: rotate(12deg);
+}
+
+.doodle-squiggle {
+  width: 80px;
+  height: 20px;
+  bottom: 52px;
+  left: 10px;
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.9;
+}
+
+/* 形状的去处：异形卡片（圆角不对称，像随手捏的形状） */
+.shape-card {
+  margin-top: 22px;
+  padding: 22px 20px;
+  background: var(--green-soft);
+  border: 3px solid var(--ink);
+  border-radius: 46% 54% 52% 48% / 52% 46% 54% 48%;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.shape-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+}
+
+.shape-card p { margin: 8px 0; }
+
+.shape-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 14px 0 6px;
+}
+
+.shape-link {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 2px 0 rgba(51, 48, 42, 0.9);
+}
+
+.shape-note {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* 三种参与方式的主题色 */
+.tile-cloud .tile-title { color: var(--blue); }
+.tile-local .tile-title { color: var(--green); }
+.tile-care .tile-title { color: var(--orange); }
+
+/* 四句邀请：粉彩 2×2 */
+.invites { padding: 28px 4px 4px; }
+
+.invites h2 {
+  display: inline-block;
+  margin: 0 0 12px;
+  font-size: 1.35rem;
+  background: var(--yellow);
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  padding: 4px 18px;
+  box-shadow: 0 2px 0 rgba(51, 48, 42, 0.9);
+  transform: rotate(-1deg);
+}
+
+.invites ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.invites li {
+  padding: 14px 12px;
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-align: center;
+  box-shadow: 0 2px 0 rgba(51, 48, 42, 0.9);
+}
+
+.invites li:nth-child(odd) { transform: rotate(-1deg); }
+.invites li:nth-child(even) { transform: rotate(1deg); }
+
+.invite-pink { background: #fde3e5; }
+.invite-blue { background: var(--blue-soft); }
+.invite-green { background: var(--green-soft); }
+.invite-yellow { background: var(--yellow-soft); }
+
+/* ---------- v0.8：故事页 / 喵星事 ---------- */
+.page-head { padding-top: 20px; }
+
+.page-head .back { margin: 0 0 12px; font-size: 0.95rem; }
+
+.page-head .eyebrow {
+  margin: 0 0 6px;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.page-head h1 {
+  margin: 0 0 8px;
+  font-size: 2.1rem;
+  line-height: 1.2;
+}
+
+.page-head .lede {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.story-body { padding: 8px 4px 4px; }
+
+.story-body h2 {
+  display: inline-block;
+  margin: 26px 0 8px;
+  font-size: 1.3rem;
+  background: var(--yellow);
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  padding: 4px 18px;
+  box-shadow: 0 2px 0 rgba(51, 48, 42, 0.9);
+  transform: rotate(-1deg);
+}
+
+.story-body p { margin: 10px 0; }
+
+.story-photo { margin: 18px 0; }
+
+.story-photo img {
+  width: 100%;
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.story-photo figcaption {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* 喵星事：每只猫一行邀请 */
+.cat-invites { padding-left: 22px; }
+.cat-invites li { margin: 12px 0; }
+
+/* 页面底部相关链接 */
+.page-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 3px dashed var(--line);
+}
+
+.page-nav a {
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 10px 18px;
+  text-align: center;
+  box-shadow: 0 2px 0 rgba(51, 48, 42, 0.9);
+}
+
+/* ---------- 平板：v0.8 新增 ---------- */
+@media (min-width: 640px) {
+  .invites ul { grid-template-columns: repeat(4, 1fr); }
+  .page-nav { flex-direction: row; justify-content: space-between; }
+  .page-nav a { flex: 1; }
+}
+
+/* ---------- v0.8.1：手绘 meow 字标 ---------- */
+/* 字标是内联 SVG 手绘字母（白描边＋黄蜡笔下划线＋小星星），
+   不依赖外部字体，离线也能用。 */
+.wordmark {
+  width: 178px;
+  height: auto;
+  vertical-align: -0.18em;
+}
+
+.wordmark-life {
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-left: 6px;
+  transform: rotate(-2deg);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- v0.8.1：喵花名 ---------- */
+.cat-cards {
+  display: grid;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.cat-card {
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  padding-bottom: 16px;
+}
+
+/* 轻微错开，像随手贴的贴纸 */
+.cat-card:nth-child(odd) { transform: rotate(-0.6deg); }
+.cat-card:nth-child(even) { transform: rotate(0.6deg); }
+
+.cat-media {
+  border-bottom: 3px solid var(--ink);
+  background: var(--yellow-soft);
+}
+
+.cat-media img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.cat-doodle {
+  display: block;
+  width: 140px;
+  height: 140px;
+  margin: 14px auto;
+}
+
+.doodle-pink { color: #f4b8c1; }
+.doodle-blue { color: #aecdf7; }
+.doodle-green { color: #a8dcc9; }
+.doodle-yellow { color: #f7d774; }
+.doodle-orange { color: #f9c39a; }
+.doodle-lavender { color: #cdbcf0; }
+
+.cat-card h3 {
+  margin: 14px 18px 0;
+  font-size: 1.4rem;
+}
+
+.cat-card .cat-tag {
+  margin: 2px 18px 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--orange);
+}
+
+.cat-card p {
+  margin: 8px 18px 0;
+}
+
+.cats-note {
+  margin-top: 24px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ---------- v0.8.1：喵星事暂缓 ---------- */
+.soon-note {
+  background: var(--yellow-soft);
+  border: 3px dashed var(--ink);
+  border-radius: 16px;
+  padding: 14px 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* ---------- 平板 / 电脑：v0.8.1 新增 ---------- */
+@media (min-width: 640px) {
+  .cat-cards { grid-template-columns: 1fr 1fr; }
+  .wordmark { width: 210px; }
+}
+
+@media (min-width: 960px) {
+  .cat-cards { grid-template-columns: repeat(3, 1fr); }
 }

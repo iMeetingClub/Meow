@@ -2,179 +2,153 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="喵星计划 / Cat Planet — 开创喵星，欢迎建设喵星。眼前先做的是「小猫过冬猫屋计划」：呦唬和她的 7 只小猫即将入冬，2026 年 11 月 15–18 日，带孩子一起为它们搭一个家。" />
-    <title>喵星计划 · Cat Planet — 开创喵星</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="meow 生活 — 人与人、人与宠物之间的一种生活方式的构建。当前活动：喵星搞事情 · 猫屋搭建，2026 年 11 月 15–18 日，南塘。去年 10 月，一只猫闯进了 FC 的出差生活。" />
+    <title>meow 生活 · 喵星搞事情 — 猫屋搭建</title>
+    <!-- PWA：可以安装为手机 web app -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#ffc53d" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="meow 生活" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <main>
-      <!-- 海报邀请 -->
+    <main class="home">
+      <!-- 主视觉：一张图就是首页。点图片，进故事页。 -->
       <header class="hero">
-        <p class="eyebrow">开创喵星 · 欢迎建设喵星</p>
-        <h1>喵星计划<br /><span class="en">Cat Planet</span></h1>
-        <p class="tagline">眼前先做的是「小猫过冬猫屋计划」</p>
-        <p class="tagline">呦唬和她的 7 只小猫，冬天快来了</p>
-        <p class="dates">2026 年 11 月 15–18 日 · 南塘</p>
-        <p class="invite">带孩子一起，为它们搭一个家。来不来都可以。</p>
-        <a class="cta" href="#planet">先看看喵星是怎么回事 ↓</a>
+        <a class="hero-link" href="/story.html">
+          <figure class="hero-photo">
+            <img
+              src="/cats/cats-sleeping-red-blanket.jpg"
+              alt="呦唬和孩子们挤在红毯子上睡觉"
+              fetchpriority="high"
+            />
+            <figcaption class="hero-caption">
+              <p class="eyebrow">喵星搞事情</p>
+              <h1>
+                <svg class="wordmark" viewBox="0 0 300 112" role="img" aria-label="meow">
+                  <g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 88 C8 60 12 40 20 32 C26 26 32 28 33 38 C34 55 33 72 34 88 C36 64 40 42 48 34 C54 28 60 30 61 40 C62 56 61 72 62 88" />
+                    <path d="M122 50 C116 40 104 38 98 44 C92 50 94 60 104 62 C114 64 122 60 122 52 C122 46 118 42 112 42 M96 52 L122 50" />
+                    <path d="M158 40 C146 38 137 49 138 62 C139 75 148 85 160 84 C172 83 179 73 178 60 C177 48 169 41 158 40 Z" />
+                    <path d="M196 42 C198 56 200 70 204 86 C208 72 214 54 220 42 C224 56 230 72 236 86 C242 70 248 54 254 42" />
+                  </g>
+                  <path d="M8 102 Q 60 96 110 101 Q 160 106 210 101 Q 250 97 292 101" fill="none" stroke="#ffc53d" stroke-width="5" stroke-linecap="round" />
+                  <path d="M286 16 L289.5 24 L298 24 L291.5 29.5 L294 38 L286 33 L278 38 L280.5 29.5 L274 24 L282.5 24 Z" fill="#ffc53d" />
+                </svg>
+                <span class="wordmark-life">生活</span><br />
+                <span class="en">meow Life</span>
+              </h1>
+              <p class="tagline">猫屋搭建</p>
+              <p class="dates">2026 年 11 月 15–18 日 · 南塘</p>
+              <p class="invite">来不来都可以。</p>
+            </figcaption>
+          </figure>
+        </a>
+        <p class="hero-hint">👆 点图片，看看这个故事是怎么开始的</p>
+        <!-- 蜡笔小涂鸦 -->
+        <svg class="doodle doodle-star" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 L24 15 L36 15 L26 22 L30 34 L20 27 L10 34 L14 22 L4 15 L16 15 Z" /></svg>
+        <svg class="doodle doodle-squiggle" viewBox="0 0 80 20" aria-hidden="true"><path d="M2 10 Q 12 2 22 10 T 42 10 T 62 10 T 78 10" fill="none" /></svg>
       </header>
 
-      <!-- 喵星是什么 -->
-      <section id="planet">
-        <h2>喵星是什么</h2>
-        <p>
-          喵星计划（Cat Planet）是一个大计划，下面可能会有很多 program。
-          眼前先做的是「小猫过冬猫屋计划」，未来还有什么还不晓得。
+      <!-- 形状的去处：故事与往期 -->
+      <section class="shape-card" aria-label="故事与往期">
+        <h2>故事与往期</h2>
+        <p>一只猫在去年 10 月闯进了一个人的生活。现在，FC 想邀请更多人，一起来体会这种生活。</p>
+        <p class="shape-links">
+          <a class="shape-link" href="/story.html">故事是怎么开始的 →</a>
+          <a class="shape-link" href="/cats.html">喵花名 →</a>
         </p>
-        <p>
-          所以才会有「开创喵星」、「欢迎建设喵星」这些提法——
-          喵星不是一个活动，而是一个大家一起来建设的地方。
-          猫屋是第一步，先把这件事做起来。
-        </p>
+        <p class="shape-note">往期活动：猫屋搭建是第一次。下一个活动会用同样的结构，在这里长出来。</p>
       </section>
 
-      <!-- 故事 -->
-      <section id="story">
-        <h2>小猫过冬猫屋计划：这件事是怎么来的</h2>
-        <p>
-          去年在南塘村生活时，遇到一只猫，叫<strong>呦唬</strong>。后来它陆陆续续生下了
-          <strong>7 只小猫</strong>。从去年 10 月到今年 5 月，店里一直在做繁育孵化，
-          猫越来越多。
-        </p>
-        <p>
-          现在即将入冬。10 月上旬，几所高中的校长号召大家一起买猫粮；
-          戴姐觉得，可以带着孩子们一起来。于是这件事就串起来了：
-          <strong>趁 11 月 16–18 日秋假，带孩子们一起做一个猫屋。</strong>
-        </p>
-        <p>
-          猫屋具体怎么做、怎么构思，目前还没深入探讨——就是一个轻规划的过程。
-          先把局攒起来，细节大家一起来定。
-        </p>
-      </section>
+      <!-- 三种参与方式：点一张，展开一块 -->
+      <nav class="tiles ways" aria-label="参与方式">
+        <section class="tile tile-cloud" id="tile-cloud">
+          <button class="tile-head" aria-expanded="false" aria-controls="panel-cloud">
+            <img
+              src="/cats/kittens-looking-camera.jpg"
+              alt="小猫们挤在毛窝里看镜头"
+              loading="lazy"
+            />
+            <span class="tile-label">
+              <span class="tile-title">云建设</span>
+              <span class="tile-sub">远程参与，享受远程的影响</span>
+            </span>
+            <span class="tile-plus" aria-hidden="true">＋</span>
+          </button>
+          <div class="tile-panel" id="panel-cloud">
+            <div class="tile-panel-inner">
+              <p>不用到南塘。在线上关注、捐助猫粮猫砂、远程出主意，你的参与一样有影响。</p>
+              <p>猫粮和猫砂接受捐助，具体方式还在确认，确认了会告诉大家。</p>
+            </div>
+          </div>
+        </section>
 
-      <!-- 精神 -->
-      <section id="spirit">
-        <h2>众人拾柴火焰高</h2>
-        <p>
-          这有点像「石头汤」：每个人带一点东西来，一起煮出一锅汤。
-          我们没有非常具象的目标，也没有强计划性的做法——
-          不知道最终能做到什么程度，也不知道那三天课程具体长什么样。
-        </p>
-        <p>
-          核心就是：那三天开展荒野／房屋建设，邀请附近村庄的孩子一起来参与。
-          先把这件事情宣传起来，面上的事情就是盖个房、搭个巢。
-        </p>
-      </section>
+        <section class="tile tile-local" id="tile-local">
+          <button class="tile-head" aria-expanded="false" aria-controls="panel-local">
+            <img
+              src="/cats/youhu-garden.jpg"
+              alt="呦唬坐在院子里"
+              loading="lazy"
+            />
+            <span class="tile-label">
+              <span class="tile-title">在地建设</span>
+              <span class="tile-sub">来南塘现场动手，享受动手的成就感</span>
+            </span>
+            <span class="tile-plus" aria-hidden="true">＋</span>
+          </button>
+          <div class="tile-panel" id="panel-local">
+            <div class="tile-panel-inner">
+              <p>11 月 15 日的建设日，孩子、创新老师、木工老师程家俊一起动手，猫也进场。</p>
+              <p>你亲手搭的猫屋，冬天猫就住在里面。</p>
+            </div>
+          </div>
+        </section>
 
-      <!-- 猫咪们 -->
-      <section id="cats">
-        <h2>猫咪们</h2>
-        <p>南塘素社小院现在有 14 只猫。每一只都有来历：</p>
-        <ol class="cats">
-          <li><strong>呦唬</strong>（母）：第一只遇到的猫，类似金渐层。今年 8 月 21 日生下 7 只小猫（五黑二黄），都顺利存活、脱离哺乳期。</li>
-          <li><strong>咪咪</strong>（公）：黑色的猫，月月（杨文月）从家里带来南塘素社小院。</li>
-          <li><strong>图图</strong>：艺术共创营期间陆续来的猫。</li>
-          <li><strong>芝麻</strong>：艺术共创营期间陆续来的猫。</li>
-          <li><strong>蛋黄</strong>：文月收养的猫。</li>
-          <li><strong>心祈貳</strong>：呦唬的孩子。9 月底只剩 5 只（3 黑 2 黄），这是其中之一。</li>
-          <li><strong>心祈寺</strong>：呦唬的孩子。</li>
-          <li><strong>心祈伍</strong>：呦唬的孩子。</li>
-          <li><strong>心祈陸</strong>：呦唬的孩子。</li>
-          <li><strong>心祈日</strong>：呦唬的孩子。</li>
-          <li><strong>奶香泡</strong>：白腹黄背的猫。</li>
-          <li><strong>马泡</strong>：伦峰老师在南塘小住期间捡的猫，后脚双腿瘫痪，只能用前二脚爬行。</li>
-          <li><strong>小黄豆</strong>：深橘色的猫，约一个月大。11 月初乡亲刘姨家里的猫生崽，母猫没有奶水、死了几只崽，最后一只带来素社小院先养着，现在会吃会喝也会跑了。</li>
-          <li><strong>黑熊</strong>：文君（振哥的哥）带来的猫，很粘人，穿着黑披肩的白底猫。</li>
-        </ol>
-        <p>照片陆续更新在这里。</p>
-      </section>
+        <section class="tile tile-care" id="tile-care">
+          <button class="tile-head" aria-expanded="false" aria-controls="panel-care">
+            <img
+              src="/cats/kittens-fluffy-bed.jpg"
+              alt="小猫们挤在毛窝里"
+              loading="lazy"
+            />
+            <span class="tile-label">
+              <span class="tile-title">短期照护</span>
+              <span class="tile-sub">来短期照顾猫，享受与生命的互动</span>
+            </span>
+            <span class="tile-plus" aria-hidden="true">＋</span>
+          </button>
+          <div class="tile-panel" id="panel-care">
+            <div class="tile-panel-inner">
+              <p>不用长期承诺。来几天，喂喂猫、陪陪猫，和这些不会说话的生命待在一起。</p>
+              <p>约 15 个孩子、3–4 个亲子家庭，招 1–2 个大哥哥大姐姐。不收费，食宿自理。</p>
+            </div>
+          </div>
+        </section>
+      </nav>
 
-      <!-- 参与的人 -->
-      <section id="people">
-        <h2>参与的人</h2>
+      <!-- 四句邀请 -->
+      <section class="invites" aria-label="欢迎你来">
+        <h2>欢迎你来</h2>
         <ul>
-          <li><strong>杨天亮</strong>：阜南亲情高中校长。10 月上旬号召大家一起买猫粮。</li>
-          <li><strong>代洁</strong>：老师。提议带着孩子们一起来做猫屋。</li>
-          <li><strong>贝拉</strong>：孩子们的老师。</li>
-          <li><strong>程家俊</strong>：木艺匠人，带着孩子们一起动手做猫屋。</li>
+          <li class="invite-pink">瞄一眼</li>
+          <li class="invite-blue">描写、描绘故事</li>
+          <li class="invite-green">描绘喵星球的环境</li>
+          <li class="invite-yellow">喵一声</li>
         </ul>
-      </section>
-
-      <!-- 时间线 -->
-      <section id="timeline">
-        <h2>时间线</h2>
-        <ol class="timeline">
-          <li>
-            <time>11 月 8–9 日</time>
-            <h3>线上会（会前）</h3>
-            <p>集中讨论 16 号活动怎么做。决策会，不是讨论会。</p>
-          </li>
-          <li>
-            <time>11 月 15 日</time>
-            <h3>建设场景</h3>
-            <p>孩子＋创新老师＋木工师傅＋猫，一起进场，动手打造猫屋。</p>
-          </li>
-          <li>
-            <time>11 月 16–18 日</time>
-            <h3>快闪 P.B.L（秋假）</h3>
-            <p>项目式学习，三天快闪。每天的进展会更新在这里。</p>
-          </li>
-        </ol>
-      </section>
-
-      <!-- 参与方式 -->
-      <section id="join">
-        <h2>怎么参与</h2>
-        <p>这份宣传主要面向成年人——先打通家长这一层，把活动宣传出去。</p>
-        <ul>
-          <li><strong>家长</strong>：带孩子来参与，约 15 个孩子、3–4 个亲子家庭；不收费、食宿自理；来不来都可以</li>
-          <li><strong>过往的共创伙伴</strong>：现场参与，也可以捐款捐物，共同筹谋推进</li>
-          <li><strong>记录</strong>：整个过程做好记录，这本身就是一个很有意思的过程</li>
-        </ul>
-        <p>
-          有想法、照片、记录，欢迎直接到 GitHub 提 PR；
-          线上讨论走 iMeeting。
-        </p>
-        <p>
-          <a href="https://github.com/iMeetingClub/cat-planet-of-nantang">GitHub 仓库 ↗</a>
-          ·
-          <a href="https://imeeting.co">iMeeting ↗</a>
-        </p>
-      </section>
-
-      <!-- 协作 -->
-      <section id="collaborate">
-        <h2>一起改这个网站</h2>
-        <p>
-          这只是一版简单的初稿草案，后续需要大家一起来共创和设定。
-          如果你对宣传内容、网站感兴趣，想进一步迭代，可以直接提 PR——
-          大家一起商量内容怎么定、怎么分工合作。
-          不会用 PR 也没关系，直接开 Issue 写清楚想改什么，维护者会帮你放上去。
-        </p>
-        <p>
-          <a href="https://github.com/iMeetingClub/cat-planet-of-nantang/blob/main/CONTRIBUTING.md">贡献指南 ↗</a>
-          ·
-          <a href="https://github.com/iMeetingClub/cat-planet-of-nantang">到 GitHub 提 PR ↗</a>
-        </p>
-      </section>
-
-      <!-- 猫屋 -->
-      <section id="cathouse">
-        <h2>猫屋</h2>
-        <p>木工老师推动，和孩子一起动手做。材料费不多，主要用丙烯。</p>
-        <p>过程、照片和记录会在 11 月 15–18 日陆续更新在这里。</p>
-      </section>
-
-      <!-- 捐助 -->
-      <section id="donate">
-        <h2>捐助</h2>
-        <p>接受猫粮、猫砂捐助。捐助方式待补充。</p>
       </section>
 
       <footer>
-        <p>喵星计划 / Cat Planet · CP 计划 · 南塘</p>
+        <p>meow 生活 · 南塘，安徽阜阳</p>
         <p>本站用 TypeScript + Vite 构建，部署在 Cloudflare Pages。内容在 GitHub 上迭代。</p>
+        <p>
+          <a href="https://github.com/iMeetingClub/cat-planet-of-nantang">GitHub 仓库 ↗</a>
+        </p>
       </footer>
     </main>
     <script type="module" src="/src/main.ts"></script>

@@ -1,1 +1,16 @@
-{"description":"喵星计划 / Cat Planet — 南塘猫屋共创官方网站（CP 计划）","devDependencies":{"typescript":"^5.6.0","vite":"^5.4.0"},"name":"cat-planet","private":true,"scripts":{"build":"tsc && vite build","dev":"vite","preview":"vite preview"},"type":"module","version":"0.1.0"}
+{
+  "description": "meow 生活 / meow Life — 南塘的一种生活：人与人、人与宠物之间生活方式的构建。当前活动：喵星搞事情 · 猫屋搭建，2026 年 11 月 15–18 日。",
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vite": "^5.4.0"
+  },
+  "name": "cat-planet",
+  "private": true,
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "type": "module",
+  "version": "0.8.1"
+}
