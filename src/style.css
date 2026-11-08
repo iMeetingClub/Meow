@@ -650,3 +650,434 @@ footer .version {
 @media (min-width: 960px) {
   .cat-cards { grid-template-columns: repeat(3, 1fr); }
 }
+
+
+/* ---------- v0.9.0：猫屋季（/season） ---------- */
+/* 延续全站定型：线条轻（细、淡墨）、留白多、水彩淡染只做底、无阴影无色块。
+   插画为内联 SVG 墨线手绘：stroke 走 .ink/.callout，填色用低饱和 wash。 */
+
+.season-hero {
+  margin: 26px 0 0;
+  padding: 20px 16px 14px;
+  background: var(--wash-yellow);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.season-hero svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.season-hero svg .ink { stroke: var(--ink); }
+.season-hero figcaption {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* 季节状态（筹备中 / 进行中 / 已结束） */
+.season-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 14px 0 0;
+  padding: 8px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  font-weight: 700;
+}
+
+.season-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--yellow);
+  animation: season-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes season-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.78); }
+}
+
+/* 段落：留白分隔，不用重边框 */
+.season-section { padding: 44px 4px 4px; }
+
+.season-heading h2 { margin: 0 0 10px; font-size: 1.3rem; }
+
+.season-heading h2::after {
+  content: "";
+  display: block;
+  width: 52px;
+  height: 6px;
+  margin-top: 6px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='6' viewBox='0 0 52 6'%3E%3Cpath d='M1 4 Q 8 1 15 4 T 29 4 T 43 4 T 51 4' fill='none' stroke='%23c08a5e' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
+}
+
+.season-heading p { margin: 10px 0; }
+
+/* 剖面图卡片 */
+.blueprint { display: grid; gap: 22px; margin-top: 24px; }
+
+.blueprint-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  overflow: hidden;
+}
+
+.blueprint-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+.drawing-stamp {
+  padding: 3px 12px;
+  border: 1px dashed var(--line);
+  border-radius: 999px;
+  font-weight: 400;
+}
+
+.nest-diagram { display: block; width: 100%; height: auto; }
+
+/* 无 class 的墨线（地面虚线、猫脸、垫被、小星星）统一上淡墨色 */
+.nest-diagram > path:not([class]) { stroke: var(--ink); }
+
+.nest-diagram .diagram-part { stroke: var(--ink); transition: opacity 0.25s ease; }
+.nest-diagram .diagram-part.is-dim { opacity: 0.22; }
+.nest-diagram .callout { stroke: var(--muted); transition: opacity 0.25s ease; }
+.nest-diagram .callout.is-dim { opacity: 0.2; }
+.nest-diagram .callout-dot { transition: opacity 0.25s ease; }
+.nest-diagram .callout-dot.is-dim { opacity: 0.2; }
+
+.diagram-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 18px;
+  border-top: 1px dashed var(--line-soft);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.pencil-note { color: var(--orange); }
+
+/* 分层页签 */
+.guide-kicker { margin: 0 0 10px; font-size: 0.9rem; color: var(--muted); font-weight: 600; }
+
+.layer-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.layer-tab {
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.layer-tab span {
+  margin-right: 6px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.layer-tab.is-active { border-color: var(--orange); background: var(--wash-orange); }
+
+.layer-detail {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-top: 16px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--wash-green);
+}
+
+.detail-icon { font-size: 1.7rem; line-height: 1.2; }
+
+.layer-detail h3 { margin: 0 0 6px; font-size: 1.1rem; }
+.layer-detail p { margin: 0; font-size: 0.95rem; }
+
+.safety-note {
+  margin: 14px 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* 一起集物 */
+.demo-ribbon {
+  margin: 18px 0 0;
+  padding: 10px 16px;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  background: var(--wash-yellow);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.resource-list { display: grid; gap: 14px; margin-top: 18px; }
+
+.resource-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.resource-emoji { font-size: 1.6rem; line-height: 1.3; }
+
+.resource-main { min-width: 0; }
+
+.resource-label { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+.resource-label strong { font-size: 1.05rem; }
+
+.tiny-tag {
+  padding: 2px 10px;
+  border: 1px dashed var(--line);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.resource-main p { margin: 6px 0 10px; font-size: 0.93rem; color: var(--muted); }
+
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.progress-meta b { color: var(--ink); }
+
+.progress-track {
+  height: 8px;
+  margin-top: 6px;
+  border-radius: 999px;
+  background: var(--line-soft);
+  overflow: hidden;
+}
+
+.progress-track span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--green);
+  transition: width 0.4s ease;
+}
+
+.gather-button {
+  grid-column: 1 / -1;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+}
+
+.gather-button:hover { border-color: var(--green); background: var(--wash-green); }
+.gather-button:active { transform: scale(0.97); }
+
+.collect-footer { margin-top: 16px; font-size: 0.92rem; color: var(--muted); }
+.collect-footer strong { color: var(--ink); }
+
+/* 走到哪儿了：爪印里程碑 */
+.trail { margin-top: 22px; }
+
+.milestones {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.milestones li { position: relative; padding: 0 0 6px 34px; }
+.milestones li::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 34px;
+  bottom: -4px;
+  width: 0;
+  border-left: 1.5px dashed var(--line);
+}
+
+.milestones li:last-child::before { display: none; }
+
+.milestone {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.milestone:hover { background: var(--card); border-color: var(--line-soft); }
+
+.milestone-paw { flex: none; font-size: 1.2rem; opacity: 0.3; filter: grayscale(1); transition: opacity 0.25s ease, filter 0.25s ease; }
+
+.milestone.is-done .milestone-paw { opacity: 0.75; filter: none; }
+.milestone.is-current { background: var(--wash-yellow); border-color: var(--line); }
+.milestone.is-current .milestone-paw { opacity: 1; filter: none; }
+
+.milestone-text { display: grid; gap: 2px; }
+.milestone-text time { font-size: 0.82rem; font-weight: 700; color: var(--orange); letter-spacing: 0.06em; }
+.milestone-text strong { font-size: 1.02rem; }
+.milestone-text small { color: var(--muted); font-size: 0.85rem; }
+
+.milestone.is-upcoming .milestone-text { opacity: 0.55; }
+
+.milestone-detail {
+  margin: 18px 0 0;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--wash-blue);
+  font-size: 0.95rem;
+}
+
+/* 每日手记 */
+.log-grid { display: grid; gap: 18px; margin-top: 24px; }
+
+.log-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  overflow: hidden;
+}
+
+.log-picture {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 150px;
+  border-bottom: 1px dashed var(--line);
+  background: var(--wash-green);
+}
+
+.log-card:nth-child(2) .log-picture { background: var(--wash-orange); }
+.log-card:nth-child(3) .log-picture { background: var(--wash-blue); }
+
+.log-picture .log-sun { position: absolute; top: 14px; left: 16px; color: var(--yellow); font-size: 1.3rem; }
+.log-picture .log-cat { font-size: 2.4rem; opacity: 0.75; }
+
+.log-label {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  padding: 2px 10px;
+  border: 1px dashed var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.log-caption { padding: 14px 16px 18px; }
+.log-type { font-size: 0.82rem; font-weight: 700; color: var(--orange); letter-spacing: 0.08em; }
+.log-caption h3 { margin: 6px 0; font-size: 1.1rem; }
+.log-caption p { margin: 0; font-size: 0.92rem; color: var(--muted); }
+
+.log-howto { text-align: left; }
+.log-howto code {
+  padding: 1px 7px;
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  background: var(--card);
+  font-size: 0.88em;
+}
+
+/* 追鼠标的像素猫（oneko，全站彩蛋） */
+#cursor-cat {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 90;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  will-change: transform;
+}
+
+#cursor-cat .neko-sprite {
+  width: 32px;
+  height: 32px;
+  background-image: url("/oneko.gif");
+  background-size: 256px 128px;
+  image-rendering: pixelated;
+}
+
+#cursor-cat .neko-zzz {
+  position: absolute;
+  right: -10px;
+  top: -14px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+#cursor-cat.is-sleeping .neko-zzz { opacity: 1; }
+
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  #cursor-cat { display: none; }
+}
+
+/* 猫季页脚的小字（oneko 出处） */
+footer .oneko-note { font-size: 0.82rem; opacity: 0.8; }
+
+/* 平板 / 电脑 */
+@media (min-width: 640px) {
+  .blueprint { grid-template-columns: 1.2fr 1fr; align-items: start; }
+  .resource-row { grid-template-columns: auto 1fr auto; align-items: center; }
+  .gather-button { grid-column: auto; }
+  .log-grid { grid-template-columns: repeat(3, 1fr); }
+  .log-caption h3 { font-size: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .season-dot { animation: none; }
+  .progress-track span { transition: none; }
+}
