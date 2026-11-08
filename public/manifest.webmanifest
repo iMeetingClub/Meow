@@ -1,6 +1,6 @@
 {
   "background_color": "#fff6d8",
-  "description": "meow 生活 — 人与人、人与宠物之间的一种生活方式的构建。当前活动：喵星搞事情 · 猫屋搭建，2026 年 11 月 15–18 日，南塘。",
+  "description": "meow 生活 — 人与人、人与宠物之间的一种生活方式的构建。MeoW 星是底，活动是季节：当前一季，整点meow活 · 猫屋搭建，2026 年 11 月 15–18 日，南塘。",
   "display": "standalone",
   "icons": [
     {
@@ -17,7 +17,7 @@
     }
   ],
   "lang": "zh-CN",
-  "name": "meow 生活 · meow Life",
+  "name": "meow 生活 · MeoW Life",
   "orientation": "portrait",
   "scope": "/",
   "short_name": "meow 生活",

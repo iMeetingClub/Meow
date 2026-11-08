@@ -10,7 +10,7 @@ const pkg = JSON.parse(
   readFileSync(new URL('./package.json', import.meta.url), 'utf-8'),
 ) as { version?: string }
 
-// 多页：活动主页（index）＋故事页（story）＋喵星事（stories）＋喵花名（cats）。
+// 多页：整点meow活（index）＋Meow传（story）＋与meow星事（stories）＋Meow名大噪（cats）。
 // 四个页面共用 src/main.ts，里面的逻辑按页面上有的元素才运行。
 export default defineConfig({
   base: './',

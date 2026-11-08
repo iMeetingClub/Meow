@@ -1,11 +1,11 @@
-/* meow 生活 — service worker（v0.8.2）
+/* meow 生活 — service worker（v0.8.3）
    极简离线缓存：同站静态资源 cache-first，版本化缓存名。
    发新版时改 CACHE_NAME，activate 会清掉旧缓存，
    所以页脚 / 横幅的版本号不会被旧缓存卡住。
    四个页面和三张插画都在预缓存里，
    页面间导航不会被旧缓存卡住。 */
 
-const CACHE_NAME = 'cat-planet-v0.8.2';
+const CACHE_NAME = 'cat-planet-v0.8.3';
 const PRECACHE = [
   '/',
   '/story.html',
@@ -15,6 +15,7 @@ const PRECACHE = [
   '/illustrations/cat-mother-youhu.webp',
   '/illustrations/kittens-playing.webp',
   '/manifest.webmanifest',
+  '/favicon.png',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
   '/icons/apple-touch-icon.png',
