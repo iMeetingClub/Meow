@@ -336,18 +336,24 @@ footer .version {
   .tile-plus { transition: none; }
 }
 
-/* 正式版标题下方的版号徽章 */
-.version-badge {
-  display: inline-block;
-  margin: 14px 0 0;
-  padding: 4px 12px;
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  background: var(--card);
+/* v0.8.2：插画主视觉——浅色粉彩图上的标题不用深色渐变，改奶油色渐变＋深色字 */
+.hero-illus .hero-caption {
+  background: linear-gradient(to top, rgba(244, 238, 225, 0.97), rgba(244, 238, 225, 0));
+  color: var(--ink);
 }
+
+.hero-illus .hero-caption h1 { text-shadow: none; }
+
+.hero-illus .hero-caption h1 .en,
+.hero-illus .hero-caption .eyebrow,
+.hero-illus .hero-caption .dates { color: var(--green); }
+
+.hero-illus .wordmark g { stroke: var(--ink); }
+.hero-illus .wm-underline { stroke: var(--orange); }
+.hero-illus .wm-star { fill: var(--orange); }
+
+/* v0.8.2：喵花名里五只小猫的共用插画，全宽一条 */
+.kittens-group { grid-column: 1 / -1; }
 
 /* ---------- v0.8：活动主页 ---------- */
 /* 主视觉是整张可点的图，点进故事页 */
