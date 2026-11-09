@@ -6,6 +6,8 @@
 
 这是生活中的事，可能也涉及了一些决策，所以我们也用 Issue 记录下来，也用 https://iMeeting.co 来支持我们共同决策。
 
+> 如果你是 AI 助手或其他开发者：请先阅读本 README，再阅读 [CONTRIBUTING.md](CONTRIBUTING.md)，并遵守里面的规则（IP 分支命名、main／dev 工作流等）。
+
 ## 参与方式
 
 - 如果想参与，可以阅读 [Contributing](CONTRIBUTING.md)
