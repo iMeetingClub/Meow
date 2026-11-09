@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="meow 生活 — 一张大地图就是所有去处：点猫屋看猫屋计划，点牌子看喵花名，点蝴蝶看故事。" />
+    <meta name="description" content="meow 生活 — 一张大地图就是所有去处：点小猫看喵花名，点工具看猫屋计划，点蝴蝶看故事。" />
     <title>meow 生活</title>
     <!-- PWA：可以安装为手机 web app -->
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -18,11 +18,12 @@
     <style>
       /* 首页就是一张大地图：整页只有图，没有其他文字，留白多，内容逐步往图里加。 */
       html, body { background: #fdf9ef; }
-      body { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      body { min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
       .map-wrap {
         position: relative;
+        /* 手机全屏：图尽可能大，宽高都不超出视口，6:7 比例 */
+        width: min(100vw, calc(100dvh * 6 / 7));
         max-width: 720px;
-        width: 100%;
       }
       .map-wrap img {
         display: block;
@@ -33,15 +34,54 @@
         position: absolute;
         display: block;
         cursor: pointer;
+        border-radius: 16px;
+        transition: outline-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+        outline: 3px solid transparent;
+        outline-offset: 2px;
       }
-      /* 告示牌 喵花名 -> 所有猫咪的名字 */
-      .map-wrap .hs-cats { left: 52.8%; top: 79.8%; width: 13.9%; height: 5.4%; }
-      /* 圆门口 猫屋计划 -> 猫屋搭建（季节页） */
-      .map-wrap .hs-act { left: 29%; top: 56%; width: 22%; height: 22%; }
-      /* 蝴蝶 Meow传 -> 故事 */
-      .map-wrap .hs-story { left: 74%; top: 57%; width: 13%; height: 17%; }
-      /* 二维码 -> 首页（手机长按扫码进站） */
-      .map-wrap .hs-qr { left: 33.3%; top: 83.6%; width: 16.5%; height: 14.2%; }
+      /* 电脑版：鼠标悬停，橘色描边＋淡黄底＋微光，像按钮 */
+      @media (hover: hover) {
+        .map-wrap .hotspot:hover,
+        .map-wrap .hotspot:focus-visible {
+          outline-color: #e8821e;
+          background: rgba(255, 197, 61, 0.18);
+          box-shadow: 0 0 0 4px rgba(232, 130, 30, 0.15);
+        }
+      }
+      /* 手机版：点按时亮橘边；平时每个可点处有个小圆点轻轻跳，提示可以点 */
+      .map-wrap .hotspot:active {
+        outline-color: #e8821e;
+        background: rgba(255, 197, 61, 0.22);
+      }
+      .map-wrap .hotspot .dot {
+        position: absolute;
+        right: 6%;
+        top: 6%;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #e8821e;
+        box-shadow: 0 0 0 3px rgba(232, 130, 30, 0.25);
+        animation: dot-pulse 1.8s ease-in-out infinite;
+      }
+      @media (hover: hover) {
+        /* 电脑版有鼠标悬停提示，小圆点就不用了 */
+        .map-wrap .hotspot .dot { display: none; }
+      }
+      @keyframes dot-pulse {
+        0%, 100% { transform: scale(1); opacity: 0.9; }
+        50% { transform: scale(1.35); opacity: 0.55; }
+      }
+      /* 左边小猫 -> 喵花名 */
+      .map-wrap .hs-cat-l { left: 3%; top: 74%; width: 21%; height: 12%; }
+      /* 右边小猫 -> 喵花名 */
+      .map-wrap .hs-cat-r { left: 80%; top: 71%; width: 17%; height: 15%; }
+      /* 圆门口 -> 猫屋计划（季节页） */
+      .map-wrap .hs-act { left: 31%; top: 57%; width: 24%; height: 18%; }
+      /* 蝴蝶 -> Meow传（故事） */
+      .map-wrap .hs-story { left: 73%; top: 65%; width: 17%; height: 10%; }
+      /* 屋顶工具（锤子、钉子、木板）-> 猫屋计划（季节页） */
+      .map-wrap .hs-tools { left: 30%; top: 41%; width: 55%; height: 8%; }
       footer {
         width: 100%;
         max-width: 720px;
@@ -61,10 +101,11 @@
         alt="meow 生活猫屋地图：木屋前，呦唬和孩子们在院子里"
         fetchpriority="high"
       />
-      <a class="hotspot hs-cats" href="./cats.html" title="喵花名：所有猫咪的名字"></a>
-      <a class="hotspot hs-act" href="./season.html" title="猫屋计划：猫屋搭建"></a>
-      <a class="hotspot hs-story" href="./story.html" title="Meow传：故事"></a>
-      <a class="hotspot hs-qr" href="./index.html" title="扫码进入 meow.imeeting.club"></a>
+      <a class="hotspot hs-cat-l" href="./cats.html" title="喵花名：所有猫咪的名字"><span class="dot"></span></a>
+      <a class="hotspot hs-cat-r" href="./cats.html" title="喵花名：所有猫咪的名字"><span class="dot"></span></a>
+      <a class="hotspot hs-act" href="./season.html" title="猫屋计划：猫屋搭建"><span class="dot"></span></a>
+      <a class="hotspot hs-story" href="./story.html" title="Meow传：故事"><span class="dot"></span></a>
+      <a class="hotspot hs-tools" href="./season.html" title="猫屋计划：修砌中的猫屋"><span class="dot"></span></a>
     </main>
     <footer>
       <p><a href="https://github.com/iMeetingClub/Meow" target="_blank" rel="noopener">欢迎改进</a></p>
