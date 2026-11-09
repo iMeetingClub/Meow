@@ -297,13 +297,22 @@ footer {
 }
 
 /* 版本标识：预览版顶部的显眼横幅（功能性的，不动） */
+/* 预览横幅：叠在最上方的图层（fixed），不占文档流、不把页面往下推 */
 .version-banner {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
   background: #f59e0b;
   color: #1f2937;
   text-align: center;
   padding: 10px 16px;
   font-size: 0.95rem;
   font-weight: 700;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  max-width: 96vw;
 }
 
 /* 正式版页脚的版本小字 */
