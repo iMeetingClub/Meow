@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="meow 生活 — 人与人、人与宠物之间的一种生活方式的构建。MeoW 星是底，活动是季节：当前一季，整点meow活 · 猫屋搭建，2026 年 11 月 15–18 日，南塘。去年 10 月，一只猫闯进了 FC 的出差生活。" />
-    <title>整点meow活 · 猫屋搭建 — meow 生活</title>
+    <meta name="description" content="meow 生活 — 一张大地图就是所有去处：点小猫看喵花名，点屋顶看猫屋计划，点蝴蝶看故事。" />
+    <title>meow 生活</title>
     <!-- PWA：可以安装为手机 web app -->
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content="#ffc53d" />
@@ -15,149 +15,185 @@
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="stylesheet" href="/src/style.css" />
+    <style>
+      /* 首页就是一张大地图：整页只有图，没有其他文字，留白多，内容逐步往图里加。 */
+      html, body { background: #fdf9ef; }
+      body { min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .map-wrap {
+        position: relative;
+        /* 手机全屏：图尽可能大，宽高都不超出视口，6:7 比例；aspect-ratio 把图和描边锁死 */
+        width: min(100vw, calc(100dvh * 6 / 7));
+        max-width: 720px;
+        aspect-ratio: 6 / 7;
+      }
+      .map-wrap img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .map-wrap .hotspot {
+        position: absolute;
+        display: block;
+        cursor: pointer;
+        border-radius: 16px;
+        transition: outline-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+        outline: 3px solid transparent;
+        outline-offset: 2px;
+      }
+      /* 贴合轮廓的橘色描边：SVG 路径，平时隐藏，悬停／点按时出现 */
+      .map-wrap .outlines {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      .map-wrap .outlines path {
+        fill: none;
+        stroke: #e8821e;
+        stroke-width: 6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+      .map-wrap .outlines path.glow {
+        stroke-width: 14;
+        opacity: 0;
+        stroke: #e8821e;
+      }
+      /* 电脑版：鼠标悬停，橘色描边＋淡黄底＋微光，像按钮 */
+      @media (hover: hover) {
+        .map-wrap .hotspot:hover,
+        .map-wrap .hotspot:focus-visible {
+          outline-color: #e8821e;
+          background: rgba(255, 197, 61, 0.18);
+          box-shadow: 0 0 0 4px rgba(232, 130, 30, 0.15);
+        }
+        /* 小猫和屋顶用贴合轮廓的描边，不用方框 */
+        .map-wrap .hs-cat-l:hover,
+        .map-wrap .hs-cat-r:hover,
+        .map-wrap .hs-tools:hover,
+        .map-wrap .hs-cat-l:focus-visible,
+        .map-wrap .hs-cat-r:focus-visible,
+        .map-wrap .hs-tools:focus-visible {
+          outline-color: transparent;
+          background: transparent;
+          box-shadow: none;
+        }
+        .map-wrap .hs-cat-l:hover ~ .outlines .outline-cat-l,
+        .map-wrap .hs-cat-r:hover ~ .outlines .outline-cat-r,
+        .map-wrap .hs-tools:hover ~ .outlines .outline-roof {
+          opacity: 1;
+        }
+        .map-wrap .hs-cat-l:hover ~ .outlines .outline-cat-l.glow,
+        .map-wrap .hs-cat-r:hover ~ .outlines .outline-cat-r.glow,
+        .map-wrap .hs-tools:hover ~ .outlines .outline-roof.glow {
+          opacity: 0.3;
+        }
+      }
+      /* 手机版：没有悬停，描边平时就清楚地常驻（0.6）并轻轻呼吸，让人一眼看得出哪里可以点；点按时变实 */
+      @media (hover: none) {
+        .map-wrap .outlines path {
+          opacity: 0.6;
+          animation: outline-breathe 2.4s ease-in-out infinite;
+        }
+        .map-wrap .outlines path.glow {
+          opacity: 0.18;
+          animation: outline-breathe 2.4s ease-in-out infinite;
+        }
+        @keyframes outline-breathe {
+          0%, 100% { opacity: 0.45; }
+          50% { opacity: 0.75; }
+        }
+        .map-wrap .hotspot:active {
+          outline-color: #e8821e;
+          background: rgba(255, 197, 61, 0.22);
+        }
+        .map-wrap .hs-cat-l:active,
+        .map-wrap .hs-cat-r:active,
+        .map-wrap .hs-tools:active {
+          outline-color: transparent;
+          background: transparent;
+        }
+        .map-wrap .hs-cat-l:active ~ .outlines .outline-cat-l,
+        .map-wrap .hs-cat-r:active ~ .outlines .outline-cat-r,
+        .map-wrap .hs-tools:active ~ .outlines .outline-roof {
+          opacity: 1;
+        }
+        .map-wrap .hs-cat-l:active ~ .outlines .outline-cat-l.glow,
+        .map-wrap .hs-cat-r:active ~ .outlines .outline-cat-r.glow,
+        .map-wrap .hs-tools:active ~ .outlines .outline-roof.glow {
+          opacity: 0.3;
+        }
+      }
+      .map-wrap .hotspot .dot {
+        position: absolute;
+        right: 6%;
+        top: 6%;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #e8821e;
+        box-shadow: 0 0 0 3px rgba(232, 130, 30, 0.25);
+        animation: dot-pulse 1.8s ease-in-out infinite;
+      }
+      @media (hover: hover) {
+        /* 电脑版有鼠标悬停提示，小圆点就不用了 */
+        .map-wrap .hotspot .dot { display: none; }
+      }
+      @keyframes dot-pulse {
+        0%, 100% { transform: scale(1); opacity: 0.9; }
+        50% { transform: scale(1.35); opacity: 0.55; }
+      }
+      /* 左边小猫 -> 喵花名（只留左边） */
+      .map-wrap .hs-cat-l { left: 3%; top: 74%; width: 21%; height: 12%; }
+      /* 右边小猫 -> Meow传（故事，追蝴蝶那只） */
+      .map-wrap .hs-cat-r { left: 80%; top: 71%; width: 17%; height: 15%; }
+      /* 圆门口 -> 猫屋计划（季节页） */
+      .map-wrap .hs-act { left: 31%; top: 57%; width: 24%; height: 18%; }
+      /* 蝴蝶 -> Meow传（故事） */
+      .map-wrap .hs-story { left: 73%; top: 65%; width: 17%; height: 10%; }
+      /* 屋顶（锤子、钉子、木板）-> 猫屋计划（季节页） */
+      .map-wrap .hs-tools { left: 21%; top: 41%; width: 69%; height: 12%; }
+      footer {
+        width: 100%;
+        max-width: 720px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #8a7d67;
+        padding: 0.6rem 1rem 1rem;
+      }
+      footer a { color: inherit; }
+      footer .version { margin: 0.3rem 0 0; }
+    </style>
   </head>
   <body>
-    <main class="home">
-      <!-- 主视觉：一张图就是首页。点图片，进故事页。 -->
-      <header class="hero">
-        <a class="hero-link" href="/story.html">
-          <figure class="hero-photo hero-illus">
-            <img
-              src="/illustrations/hero-cat-house.webp"
-              alt="手绘猫屋：木屋前，呦唬和孩子们在院子里"
-              fetchpriority="high"
-            />
-            <figcaption class="hero-caption">
-              <p class="eyebrow">整点meow活</p>
-              <h1>
-                <svg class="wordmark" viewBox="0 0 300 112" role="img" aria-label="MeoW">
-                  <g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10 88 C8 60 12 40 20 32 C26 26 32 28 33 38 C34 55 33 72 34 88 C36 64 40 42 48 34 C54 28 60 30 61 40 C62 56 61 72 62 88" />
-                    <path d="M122 50 C116 40 104 38 98 44 C92 50 94 60 104 62 C114 64 122 60 122 52 C122 46 118 42 112 42 M96 52 L122 50" />
-                    <path d="M158 40 C146 38 137 49 138 62 C139 75 148 85 160 84 C172 83 179 73 178 60 C177 48 169 41 158 40 Z" />
-                    <path d="M196 42 C198 56 200 70 204 86 C208 72 214 54 220 42 C224 56 230 72 236 86 C242 70 248 54 254 42" />
-                  </g>
-                  <path class="wm-underline" d="M8 102 Q 60 96 110 101 Q 160 106 210 101 Q 250 97 292 101" fill="none" stroke="#ffc53d" stroke-width="5" stroke-linecap="round" />
-                  <path class="wm-star" d="M286 16 L289.5 24 L298 24 L291.5 29.5 L294 38 L286 33 L278 38 L280.5 29.5 L274 24 L282.5 24 Z" fill="#ffc53d" />
-                </svg>
-                <span class="wordmark-life">生活</span><br />
-                <span class="en">MeoW Life</span>
-              </h1>
-              <p class="tagline">猫屋搭建</p>
-              <p class="dates">2026 年 11 月 15–18 日 · 南塘</p>
-              <p class="invite">来不来都可以。</p>
-            </figcaption>
-          </figure>
-        </a>
-        <p class="hero-hint">👆 点图片，进 Meow传</p>
-        <!-- 蜡笔小涂鸦 -->
-        <svg class="doodle doodle-star" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 L24 15 L36 15 L26 22 L30 34 L20 27 L10 34 L14 22 L4 15 L16 15 Z" /></svg>
-        <svg class="doodle doodle-squiggle" viewBox="0 0 80 20" aria-hidden="true"><path d="M2 10 Q 12 2 22 10 T 42 10 T 62 10 T 78 10" fill="none" /></svg>
-      </header>
-
-      <!-- 两层结构：MeoW 星是底，活动是季节 -->
-      <section class="shape-card" aria-label="MeoW 星与活动">
-        <h2>MeoW 星是底，活动是季节</h2>
-        <p>MeoW 星是常驻的基础：人与人、人与宠物之间，一种生活方式的构建。活动是季节性、周期性的——猫屋搭建是当前这一季。下一季会用同样的结构，在这里长出来。</p>
-      </section>
-
-      <!-- 形状的去处：故事与往期 -->
-      <section class="shape-card" aria-label="故事与往期">
-        <h2>故事与往期</h2>
-        <p>一只猫在去年 10 月闯进了一个人的生活。现在，FC 想邀请更多人，一起来体会这种生活。</p>
-        <p class="shape-links">
-          <a class="shape-link" href="/season.html">当前这一季：猫屋季 →</a>
-          <a class="shape-link" href="/story.html">Meow传 →</a>
-          <a class="shape-link" href="/cats.html">Meow名大噪 →</a>
-        </p>
-        <p class="shape-note">往期活动：猫屋搭建是第一次。下一个活动会用同样的结构，在这里长出来。</p>
-      </section>
-
-      <!-- 三种参与方式：点一张，展开一块 -->
-      <nav class="tiles ways" aria-label="参与方式">
-        <section class="tile tile-cloud" id="tile-cloud">
-          <button class="tile-head" aria-expanded="false" aria-controls="panel-cloud">
-            <img
-              src="/cats/kittens-looking-camera.jpg"
-              alt="小猫们挤在毛窝里看镜头"
-              loading="lazy"
-            />
-            <span class="tile-label">
-              <span class="tile-title">云建设</span>
-              <span class="tile-sub">远程参与，享受远程的影响</span>
-            </span>
-            <span class="tile-plus" aria-hidden="true">＋</span>
-          </button>
-          <div class="tile-panel" id="panel-cloud">
-            <div class="tile-panel-inner">
-              <p>不用到南塘。在线上关注、捐助猫粮猫砂、远程出主意，你的参与一样有影响。</p>
-              <p>猫粮和猫砂接受捐助，具体方式还在确认，确认了会告诉大家。</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="tile tile-local" id="tile-local">
-          <button class="tile-head" aria-expanded="false" aria-controls="panel-local">
-            <img
-              src="/cats/youhu-garden.jpg"
-              alt="呦唬坐在院子里"
-              loading="lazy"
-            />
-            <span class="tile-label">
-              <span class="tile-title">在地建设</span>
-              <span class="tile-sub">来南塘现场动手，享受动手的成就感</span>
-            </span>
-            <span class="tile-plus" aria-hidden="true">＋</span>
-          </button>
-          <div class="tile-panel" id="panel-local">
-            <div class="tile-panel-inner">
-              <p>11 月 15 日的建设日，孩子、创新老师、木工老师程家俊一起动手，猫也进场。</p>
-              <p>你亲手搭的猫屋，冬天猫就住在里面。</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="tile tile-care" id="tile-care">
-          <button class="tile-head" aria-expanded="false" aria-controls="panel-care">
-            <img
-              src="/cats/kittens-fluffy-bed.jpg"
-              alt="小猫们挤在毛窝里"
-              loading="lazy"
-            />
-            <span class="tile-label">
-              <span class="tile-title">短期照护</span>
-              <span class="tile-sub">来短期照顾猫，享受与生命的互动</span>
-            </span>
-            <span class="tile-plus" aria-hidden="true">＋</span>
-          </button>
-          <div class="tile-panel" id="panel-care">
-            <div class="tile-panel-inner">
-              <p>不用长期承诺。来几天，喂喂猫、陪陪猫，和这些不会说话的生命待在一起。</p>
-              <p>约 15 个孩子、3–4 个亲子家庭，招 1–2 个大哥哥大姐姐。不收费，食宿自理。</p>
-            </div>
-          </div>
-        </section>
-      </nav>
-
-      <!-- 四句邀请 -->
-      <section class="invites" aria-label="欢迎你来">
-        <h2>欢迎你来</h2>
-        <ul>
-          <li class="invite-pink">瞄一眼</li>
-          <li class="invite-blue">描写、描绘故事</li>
-          <li class="invite-green">描绘喵星球的环境</li>
-          <li class="invite-yellow">喵一声</li>
-        </ul>
-      </section>
-
-      <footer>
-        <p>meow 生活 · 南塘，安徽阜阳</p>
-        <p>本站用 TypeScript + Vite 构建，部署在 Cloudflare Pages。内容在 GitHub 上迭代。</p>
-        <p>
-          欢迎改进：<a href="https://github.com/iMeetingClub/cat-planet-of-nantang/issues">提 Issue ↗</a> 或 <a href="https://github.com/iMeetingClub/cat-planet-of-nantang">发 PR ↗</a>
-        </p>
-      </footer>
+    <main class="map-wrap">
+      <img
+        src="/illustrations/meow-poster-map.png"
+        alt="meow 生活猫屋地图：木屋前，呦唬和孩子们在院子里"
+        fetchpriority="high"
+      />
+      <a class="hotspot hs-cat-l" href="./cats.html" title="喵花名：所有猫咪的名字"><span class="dot"></span></a>
+      <a class="hotspot hs-cat-r" href="./story.html" title="Meow传：故事"><span class="dot"></span></a>
+      <a class="hotspot hs-act" href="./season.html" title="猫屋计划：猫屋搭建"><span class="dot"></span></a>
+      <a class="hotspot hs-story" href="./story.html" title="Meow传：故事"><span class="dot"></span></a>
+      <a class="hotspot hs-tools" href="./season.html" title="猫屋计划：修砌中的猫屋"><span class="dot"></span></a>
+      <!-- 贴合轮廓的橘色描边（手绘描摹，坐标按 1440x1680 原图） -->
+      <svg class="outlines" viewBox="0 0 1440 1680" aria-hidden="true">
+        <path class="outline-cat-l glow" d="M 78,1248 C 58,1270 48,1310 52,1360 C 55,1400 62,1435 80,1455 C 105,1478 180,1482 260,1472 C 310,1466 350,1445 360,1415 C 368,1385 360,1350 345,1325 C 335,1305 325,1285 310,1270 C 295,1255 280,1250 265,1258 C 230,1270 170,1268 130,1262 C 105,1258 88,1252 78,1248 Z" />
+        <path class="outline-cat-l" d="M 78,1248 C 58,1270 48,1310 52,1360 C 55,1400 62,1435 80,1455 C 105,1478 180,1482 260,1472 C 310,1466 350,1445 360,1415 C 368,1385 360,1350 345,1325 C 335,1305 325,1285 310,1270 C 295,1255 280,1250 265,1258 C 230,1270 170,1268 130,1262 C 105,1258 88,1252 78,1248 Z" />
+        <path class="outline-cat-r glow" d="M 1172,1350 C 1168,1330 1180,1315 1200,1305 C 1220,1292 1238,1265 1252,1245 C 1262,1232 1278,1240 1295,1252 C 1310,1262 1325,1280 1338,1300 C 1355,1322 1380,1325 1398,1338 C 1412,1350 1408,1385 1398,1415 C 1388,1445 1365,1468 1325,1472 C 1285,1476 1240,1470 1222,1452 C 1205,1435 1192,1405 1185,1380 C 1180,1365 1175,1358 1172,1350 Z" />
+        <path class="outline-cat-r" d="M 1172,1350 C 1168,1330 1180,1315 1200,1305 C 1220,1292 1238,1265 1252,1245 C 1262,1232 1278,1240 1295,1252 C 1310,1262 1325,1280 1338,1300 C 1355,1322 1380,1325 1398,1338 C 1412,1350 1408,1385 1398,1415 C 1388,1445 1365,1468 1325,1472 C 1285,1476 1240,1470 1222,1452 C 1205,1435 1192,1405 1185,1380 C 1180,1365 1175,1358 1172,1350 Z" />
+        <path class="outline-roof glow" d="M 310,890 C 380,830 450,770 520,725 C 650,705 900,695 1080,700 C 1160,740 1230,800 1290,870 C 1200,895 1000,905 800,900 C 600,895 400,900 310,890 Z" />
+        <path class="outline-roof" d="M 310,890 C 380,830 450,770 520,725 C 650,705 900,695 1080,700 C 1160,740 1230,800 1290,870 C 1200,895 1000,905 800,900 C 600,895 400,900 310,890 Z" />
+      </svg>
     </main>
+    <footer>
+      <p><a href="https://github.com/iMeetingClub/Meow" target="_blank" rel="noopener">欢迎改进</a></p>
+    </footer>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
