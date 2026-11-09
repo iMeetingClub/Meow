@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="meow 生活 — 一张大地图就是所有去处：点小猫看喵花名，点屋顶看猫屋计划，点蝴蝶看故事。" />
+    <meta name="description" content="meow 生活 — 一张大地图就是所有去处：点小猫看喵花名，点大树看喵星事，点屋顶看猫屋计划，点蝴蝶看故事。" />
     <title>meow 生活</title>
     <!-- PWA：可以安装为手机 web app -->
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -75,21 +75,25 @@
         .map-wrap .hs-cat-l:hover,
         .map-wrap .hs-cat-r:hover,
         .map-wrap .hs-tools:hover,
+        .map-wrap .hs-tree:hover,
         .map-wrap .hs-cat-l:focus-visible,
         .map-wrap .hs-cat-r:focus-visible,
-        .map-wrap .hs-tools:focus-visible {
+        .map-wrap .hs-tools:focus-visible,
+        .map-wrap .hs-tree:focus-visible {
           outline-color: transparent;
           background: transparent;
           box-shadow: none;
         }
         .map-wrap .hs-cat-l:hover ~ .outlines .outline-cat-l,
         .map-wrap .hs-cat-r:hover ~ .outlines .outline-cat-r,
-        .map-wrap .hs-tools:hover ~ .outlines .outline-roof {
+        .map-wrap .hs-tools:hover ~ .outlines .outline-roof,
+        .map-wrap .hs-tree:hover ~ .outlines .outline-tree {
           opacity: 1;
         }
         .map-wrap .hs-cat-l:hover ~ .outlines .outline-cat-l.glow,
         .map-wrap .hs-cat-r:hover ~ .outlines .outline-cat-r.glow,
-        .map-wrap .hs-tools:hover ~ .outlines .outline-roof.glow {
+        .map-wrap .hs-tools:hover ~ .outlines .outline-roof.glow,
+        .map-wrap .hs-tree:hover ~ .outlines .outline-tree.glow {
           opacity: 0.3;
         }
       }
@@ -113,18 +117,21 @@
         }
         .map-wrap .hs-cat-l:active,
         .map-wrap .hs-cat-r:active,
-        .map-wrap .hs-tools:active {
+        .map-wrap .hs-tools:active,
+        .map-wrap .hs-tree:active {
           outline-color: transparent;
           background: transparent;
         }
         .map-wrap .hs-cat-l:active ~ .outlines .outline-cat-l,
         .map-wrap .hs-cat-r:active ~ .outlines .outline-cat-r,
-        .map-wrap .hs-tools:active ~ .outlines .outline-roof {
+        .map-wrap .hs-tools:active ~ .outlines .outline-roof,
+        .map-wrap .hs-tree:active ~ .outlines .outline-tree {
           opacity: 1;
         }
         .map-wrap .hs-cat-l:active ~ .outlines .outline-cat-l.glow,
         .map-wrap .hs-cat-r:active ~ .outlines .outline-cat-r.glow,
-        .map-wrap .hs-tools:active ~ .outlines .outline-roof.glow {
+        .map-wrap .hs-tools:active ~ .outlines .outline-roof.glow,
+        .map-wrap .hs-tree:active ~ .outlines .outline-tree.glow {
           opacity: 0.3;
         }
       }
@@ -147,6 +154,8 @@
         0%, 100% { transform: scale(1); opacity: 0.9; }
         50% { transform: scale(1.35); opacity: 0.55; }
       }
+      /* 大树 -> 喵星事（与meow星事，树干有猫抓痕） */
+      .map-wrap .hs-tree { left: 1%; top: 10%; width: 35%; height: 77%; }
       /* 左边小猫 -> 喵花名（只留左边） */
       .map-wrap .hs-cat-l { left: 3%; top: 74%; width: 21%; height: 12%; }
       /* 右边小猫 -> Meow传（故事，追蝴蝶那只） */
@@ -172,10 +181,11 @@
   <body>
     <main class="map-wrap">
       <img
-        src="/illustrations/meow-poster-map.png"
+        src="/illustrations/meow-poster-map-20261109-1505.png"
         alt="meow 生活猫屋地图：木屋前，呦唬和孩子们在院子里"
         fetchpriority="high"
       />
+      <a class="hotspot hs-tree" href="./stories.html" title="喵星事：大家的故事"><span class="dot"></span></a>
       <a class="hotspot hs-cat-l" href="./cats.html" title="喵花名：所有猫咪的名字"><span class="dot"></span></a>
       <a class="hotspot hs-cat-r" href="./story.html" title="Meow传：故事"><span class="dot"></span></a>
       <a class="hotspot hs-act" href="./season.html" title="猫屋计划：猫屋搭建"><span class="dot"></span></a>
@@ -189,6 +199,8 @@
         <path class="outline-cat-r" d="M 1172,1350 C 1168,1330 1180,1315 1200,1305 C 1220,1292 1238,1265 1252,1245 C 1262,1232 1278,1240 1295,1252 C 1310,1262 1325,1280 1338,1300 C 1355,1322 1380,1325 1398,1338 C 1412,1350 1408,1385 1398,1415 C 1388,1445 1365,1468 1325,1472 C 1285,1476 1240,1470 1222,1452 C 1205,1435 1192,1405 1185,1380 C 1180,1365 1175,1358 1172,1350 Z" />
         <path class="outline-roof glow" d="M 310,890 C 380,830 450,770 520,725 C 650,705 900,695 1080,700 C 1160,740 1230,800 1290,870 C 1200,895 1000,905 800,900 C 600,895 400,900 310,890 Z" />
         <path class="outline-roof" d="M 310,890 C 380,830 450,770 520,725 C 650,705 900,695 1080,700 C 1160,740 1230,800 1290,870 C 1200,895 1000,905 800,900 C 600,895 400,900 310,890 Z" />
+        <path class="outline-tree glow" d="M 305,1470 C 290,1380 282,1200 280,1000 C 278,880 270,800 240,740 C 180,690 100,660 55,610 C 15,560 20,470 45,390 C 65,320 75,260 110,215 C 150,175 230,160 300,165 C 370,170 440,190 480,240 C 515,290 525,370 510,460 C 495,550 460,630 410,690 C 370,730 345,780 338,900 C 330,1100 325,1300 305,1470 Z" />
+        <path class="outline-tree" d="M 305,1470 C 290,1380 282,1200 280,1000 C 278,880 270,800 240,740 C 180,690 100,660 55,610 C 15,560 20,470 45,390 C 65,320 75,260 110,215 C 150,175 230,160 300,165 C 370,170 440,190 480,240 C 515,290 525,370 510,460 C 495,550 460,630 410,690 C 370,730 345,780 338,900 C 330,1100 325,1300 305,1470 Z" />
       </svg>
     </main>
     <footer>
