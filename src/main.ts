@@ -396,8 +396,8 @@ function setupShare(): void {
     const ctx = canvas.getContext('2d');
     if (!ctx) throw new Error('Canvas 不可用');
     ctx.drawImage(poster, 0, 0, 1440, 1680);
-    // 二维码放在底部中间空地（300px），不盖猫和花。
-    ctx.drawImage(qr, 570, 1330, 300, 300);
+    // 二维码放在底部中间空地（250px，y1420 起），不盖门口猫的前爪和花。
+    ctx.drawImage(qr, 595, 1420, 250, 250);
     return canvas.toDataURL('image/png');
   };
 
