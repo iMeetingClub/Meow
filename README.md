@@ -80,21 +80,23 @@ meow 生活是人与人、人与宠物之间一种生活方式的构建。**MeoW
 
 ## 网站地图
 
-网站有 4 个页面（多页结构，简洁网址：`/story.html` → 308 → `/story`、`/stories`、`/cats`）：
+网站有 5 个页面（多页结构，简洁网址：`/story.html` → 308 → `/story`、`/stories`、`/cats`，`/season` 同规则待加跳转）：
 
 | 页面 | 网址 | 名字 | 说明 |
 | --- | --- | --- | --- |
 | 主页 | `/` | 整点meow活 | MeoW 星是底，活动是季节；当前一季是猫屋搭建 |
+| 猫屋季 | `/season` | 猫屋季 | 当前这一季：剖面图讲怎么搭、一起集物、走到哪儿了、每日手记 |
 | 故事页 | `/story` | Meow传 | 呦唬怎么开始，meow 生活的起点 |
 | 投稿区 | `/stories` | 与meow星事 | 故事收集中，先放一下；投稿是文字内容，到 GitHub 提 Issue |
 | 猫名录 | `/cats` | Meow名大噪 | 小院里 14 只猫，一猫一卡 |
 
 链接关系：
 
-- 整点meow活 → Meow传、Meow名大噪
-- Meow传 → 整点meow活、与meow星事
+- 整点meow活 → 猫屋季、Meow传、Meow名大噪
+- 猫屋季 → 整点meow活、Meow传、Meow名大噪
+- Meow传 → 整点meow活、猫屋季、与meow星事
 - 与meow星事 → 整点meow活、Meow传
-- Meow名大噪 → 整点meow活、Meow传、与meow星事
+- Meow名大噪 → 整点meow活、猫屋季、Meow传
 - **与meow星事只能从 Meow传进入；Meow名大噪只有主页一个入口。**
 - 每页页脚都有 GitHub 仓库链接；与meow星事的投稿链接到 [GitHub Issues](https://github.com/iMeetingClub/cat-planet-of-nantang/issues)。
 - 站外链接（GitHub 仓库／Issues、imeeting.co）均已验证可达（200）。
