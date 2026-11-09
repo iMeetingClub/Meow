@@ -99,17 +99,12 @@
       }
       /* 手机版：没有悬停，描边平时就清楚地常驻（0.6）并轻轻呼吸，让人一眼看得出哪里可以点；点按时变实 */
       @media (hover: none) {
+        /* 手机版平时不常驻描边，只留橘色点点在闪；点按时描边才出现 */
         .map-wrap .outlines path {
-          opacity: 0.6;
-          animation: outline-breathe 2.4s ease-in-out infinite;
+          opacity: 0;
         }
         .map-wrap .outlines path.glow {
-          opacity: 0.18;
-          animation: outline-breathe 2.4s ease-in-out infinite;
-        }
-        @keyframes outline-breathe {
-          0%, 100% { opacity: 0.45; }
-          50% { opacity: 0.75; }
+          opacity: 0;
         }
         .map-wrap .hotspot:active {
           outline-color: #e8821e;
@@ -160,7 +155,7 @@
       .map-wrap .hs-cat-l { left: 3%; top: 74%; width: 21%; height: 12%; }
       /* 右边小猫 -> Meow传（故事，追蝴蝶那只） */
       .map-wrap .hs-cat-r { left: 80%; top: 71%; width: 17%; height: 15%; }
-      /* 圆门口 -> 猫屋计划（季节页） */
+      /* 圆门口（正中间的猫） -> 分享这张图 */
       .map-wrap .hs-act { left: 31%; top: 57%; width: 24%; height: 18%; }
       /* 蝴蝶 -> Meow传（故事） */
       .map-wrap .hs-story { left: 73%; top: 65%; width: 17%; height: 10%; }
@@ -176,6 +171,70 @@
       }
       footer a { color: inherit; }
       footer .version { margin: 0.3rem 0 0; }
+
+      /* 分享按钮：右下角悬浮，点击生成带二维码的分享图 */
+      /* 分享也用小点点：右下角一颗橘色点点在闪，点它邀请别人来玩 */
+      .share-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 200;
+        width: 18px;
+        height: 18px;
+        border: none;
+        border-radius: 50%;
+        padding: 0;
+        background: #e8821e;
+        box-shadow: 0 0 0 4px rgba(232, 130, 30, 0.25);
+        cursor: pointer;
+        animation: dot-pulse 1.8s ease-in-out infinite;
+      }
+      .share-btn:active { transform: scale(1.2); }
+      /* 分享弹窗：遮罩＋居中卡片，图实时生成后放进来 */
+      .share-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 300;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(45, 40, 35, 0.6);
+        padding: 16px;
+      }
+      .share-modal.is-open { display: flex; }
+      .share-card {
+        background: #fdf9ef;
+        border-radius: 16px;
+        padding: 16px;
+        max-width: 480px;
+        width: 100%;
+        text-align: center;
+      }
+      .share-card img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        background: #fff;
+      }
+      .share-card .share-status { color: #8a7d67; font-size: 0.9rem; margin: 0.8rem 0; }
+      .share-card .share-actions { display: flex; gap: 12px; justify-content: center; }
+      .share-card .share-save {
+        display: inline-block;
+        padding: 0.6rem 1.4rem;
+        border-radius: 999px;
+        background: #e8821e;
+        color: #fff;
+        text-decoration: none;
+      }
+      .share-card .share-close {
+        padding: 0.6rem 1.2rem;
+        border-radius: 999px;
+        border: 1px solid #e2d8c3;
+        background: transparent;
+        color: #8a7d67;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -188,7 +247,7 @@
       <a class="hotspot hs-tree" href="./stories.html" title="喵星事：大家的故事"><span class="dot"></span></a>
       <a class="hotspot hs-cat-l" href="./cats.html" title="喵花名：所有猫咪的名字"><span class="dot"></span></a>
       <a class="hotspot hs-cat-r" href="./story.html" title="Meow传：故事"><span class="dot"></span></a>
-      <a class="hotspot hs-act" href="./season.html" title="猫屋计划：猫屋搭建"><span class="dot"></span></a>
+      <a class="hotspot hs-act" href="#" data-share-open title="分享这张图：邀请别人来玩"><span class="dot"></span></a>
       <a class="hotspot hs-story" href="./story.html" title="Meow传：故事"><span class="dot"></span></a>
       <a class="hotspot hs-tools" href="./season.html" title="猫屋计划：修砌中的猫屋"><span class="dot"></span></a>
       <!-- 贴合轮廓的橘色描边（手绘描摹，坐标按 1440x1680 原图） -->
@@ -206,6 +265,18 @@
     <footer>
       <p><a href="https://github.com/iMeetingClub/Meow" target="_blank" rel="noopener">欢迎改进</a></p>
     </footer>
+
+    <button class="share-btn" type="button" data-share-open aria-label="分享这张图" title="分享这张图"></button>
+    <div class="share-modal" data-share-modal aria-hidden="true" role="dialog" aria-label="分享图">
+      <div class="share-card">
+        <img data-share-img alt="分享图生成中…" />
+        <p class="share-status" data-share-status>正在生成分享图…</p>
+        <div class="share-actions">
+          <a class="share-save" data-share-save href="#" download="meow-生活-分享图.png">保存图片</a>
+          <button class="share-close" type="button" data-share-close>关闭</button>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
