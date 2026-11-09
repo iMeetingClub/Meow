@@ -361,3 +361,74 @@ function setupOneko(): void {
 }
 
 setupOneko();
+
+/* ---------- v0.9.5：分享 — 实时生成带二维码的分享图 ---------- */
+// 点分享按钮：Canvas 上把地图海报＋网址二维码合成一张图，弹窗里预览，
+// 点「保存图片」下载 PNG 到手机相册。全程浏览器本地生成，不走服务器。
+function setupShare(): void {
+  const btns = Array.from(document.querySelectorAll<HTMLElement>('[data-share-open]'));
+  const modal = document.querySelector<HTMLElement>('[data-share-modal]');
+  if (!btns.length || !modal) return;
+  const img = modal.querySelector<HTMLImageElement>('[data-share-img]');
+  const saveBtn = modal.querySelector<HTMLAnchorElement>('[data-share-save]');
+  const closeBtn = modal.querySelector<HTMLButtonElement>('[data-share-close]');
+  const status = modal.querySelector<HTMLElement>('[data-share-status]');
+
+  const POSTER_SRC = '/illustrations/meow-poster-map-20261109-1512.png';
+  const QR_SRC = '/meow-qrcode-square-meow.png';
+
+  const loadImage = (src: string) =>
+    new Promise<HTMLImageElement>((resolve, reject) => {
+      const im = new Image();
+      im.onload = () => resolve(im);
+      im.onerror = () => reject(new Error(`图片载入失败：${src}`));
+      im.src = src;
+    });
+
+  const generate = async (): Promise<string> => {
+    const [poster, qr] = await Promise.all([
+      loadImage(POSTER_SRC),
+      loadImage(QR_SRC),
+    ]);
+    const canvas = document.createElement('canvas');
+    canvas.width = 1080;
+    canvas.height = 1260;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) throw new Error('Canvas 不可用');
+    ctx.drawImage(poster, 0, 0, 1080, 1260);
+    // 二维码放在底部中间空地（188px，y1065 起），不盖门口猫的前爪和花。
+    ctx.drawImage(qr, 446, 1065, 188, 188);
+    return canvas.toDataURL('image/png');
+  };
+
+  btns.forEach((btn) => btn.addEventListener('click', async (event) => {
+    event.preventDefault();
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    if (status) status.textContent = '正在生成分享图…';
+    try {
+      const url = await generate();
+      if (img) {
+        img.src = url;
+        img.alt = 'meow 生活分享图：猫屋地图＋网址二维码';
+      }
+      if (saveBtn) {
+        saveBtn.href = url;
+        saveBtn.download = 'meow-生活-分享图.png';
+      }
+      if (status) status.textContent = '点「保存图片」，存到手机相册。';
+    } catch {
+      if (status) status.textContent = '生成失败，请检查网络后重试。';
+    }
+  }));
+
+  const close = () => {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+  };
+  closeBtn?.addEventListener('click', close);
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) close();
+  });
+}
+setupShare();
