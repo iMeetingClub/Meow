@@ -39,6 +39,28 @@
         outline: 3px solid transparent;
         outline-offset: 2px;
       }
+      /* 贴合小猫轮廓的橘色描边：SVG 路径，平时隐藏，悬停／点按时出现 */
+      .map-wrap .outlines {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      .map-wrap .outlines path {
+        fill: none;
+        stroke: #e8821e;
+        stroke-width: 6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+      .map-wrap .outlines path.glow {
+        stroke-width: 14;
+        opacity: 0;
+        stroke: #e8821e;
+      }
       /* 电脑版：鼠标悬停，橘色描边＋淡黄底＋微光，像按钮 */
       @media (hover: hover) {
         .map-wrap .hotspot:hover,
@@ -47,11 +69,41 @@
           background: rgba(255, 197, 61, 0.18);
           box-shadow: 0 0 0 4px rgba(232, 130, 30, 0.15);
         }
+        /* 小猫用贴合轮廓的描边，不用方框 */
+        .map-wrap .hs-cat-l:hover,
+        .map-wrap .hs-cat-r:hover,
+        .map-wrap .hs-cat-l:focus-visible,
+        .map-wrap .hs-cat-r:focus-visible {
+          outline-color: transparent;
+          background: transparent;
+          box-shadow: none;
+        }
+        .map-wrap .hs-cat-l:hover ~ .outlines .outline-cat-l,
+        .map-wrap .hs-cat-r:hover ~ .outlines .outline-cat-r {
+          opacity: 1;
+        }
+        .map-wrap .hs-cat-l:hover ~ .outlines .outline-cat-l.glow,
+        .map-wrap .hs-cat-r:hover ~ .outlines .outline-cat-r.glow {
+          opacity: 0.3;
+        }
       }
       /* 手机版：点按时亮橘边；平时每个可点处有个小圆点轻轻跳，提示可以点 */
       .map-wrap .hotspot:active {
         outline-color: #e8821e;
         background: rgba(255, 197, 61, 0.22);
+      }
+      .map-wrap .hs-cat-l:active,
+      .map-wrap .hs-cat-r:active {
+        outline-color: transparent;
+        background: transparent;
+      }
+      .map-wrap .hs-cat-l:active ~ .outlines .outline-cat-l,
+      .map-wrap .hs-cat-r:active ~ .outlines .outline-cat-r {
+        opacity: 1;
+      }
+      .map-wrap .hs-cat-l:active ~ .outlines .outline-cat-l.glow,
+      .map-wrap .hs-cat-r:active ~ .outlines .outline-cat-r.glow {
+        opacity: 0.3;
       }
       .map-wrap .hotspot .dot {
         position: absolute;
@@ -106,6 +158,13 @@
       <a class="hotspot hs-act" href="./season.html" title="猫屋计划：猫屋搭建"><span class="dot"></span></a>
       <a class="hotspot hs-story" href="./story.html" title="Meow传：故事"><span class="dot"></span></a>
       <a class="hotspot hs-tools" href="./season.html" title="猫屋计划：修砌中的猫屋"><span class="dot"></span></a>
+      <!-- 贴合小猫轮廓的橘色描边（手绘描摹，坐标按 1440x1680 原图） -->
+      <svg class="outlines" viewBox="0 0 1440 1680" aria-hidden="true">
+        <path class="outline-cat-l glow" d="M 78,1248 C 58,1270 48,1310 52,1360 C 55,1400 62,1435 80,1455 C 105,1478 180,1482 260,1472 C 310,1466 350,1445 360,1415 C 368,1385 360,1350 345,1325 C 335,1305 325,1285 310,1270 C 295,1255 280,1250 265,1258 C 230,1270 170,1268 130,1262 C 105,1258 88,1252 78,1248 Z" />
+        <path class="outline-cat-l" d="M 78,1248 C 58,1270 48,1310 52,1360 C 55,1400 62,1435 80,1455 C 105,1478 180,1482 260,1472 C 310,1466 350,1445 360,1415 C 368,1385 360,1350 345,1325 C 335,1305 325,1285 310,1270 C 295,1255 280,1250 265,1258 C 230,1270 170,1268 130,1262 C 105,1258 88,1252 78,1248 Z" />
+        <path class="outline-cat-r glow" d="M 1172,1350 C 1168,1330 1180,1315 1200,1305 C 1220,1292 1238,1265 1252,1245 C 1262,1232 1278,1240 1295,1252 C 1310,1262 1325,1280 1338,1300 C 1355,1322 1380,1325 1398,1338 C 1412,1350 1408,1385 1398,1415 C 1388,1445 1365,1468 1325,1472 C 1285,1476 1240,1470 1222,1452 C 1205,1435 1192,1405 1185,1380 C 1180,1365 1175,1358 1172,1350 Z" />
+        <path class="outline-cat-r" d="M 1172,1350 C 1168,1330 1180,1315 1200,1305 C 1220,1292 1238,1265 1252,1245 C 1262,1232 1278,1240 1295,1252 C 1310,1262 1325,1280 1338,1300 C 1355,1322 1380,1325 1398,1338 C 1412,1350 1408,1385 1398,1415 C 1388,1445 1365,1468 1325,1472 C 1285,1476 1240,1470 1222,1452 C 1205,1435 1192,1405 1185,1380 C 1180,1365 1175,1358 1172,1350 Z" />
+      </svg>
     </main>
     <footer>
       <p><a href="https://github.com/iMeetingClub/Meow" target="_blank" rel="noopener">欢迎改进</a></p>
