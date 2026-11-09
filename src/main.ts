@@ -366,9 +366,9 @@ setupOneko();
 // 点分享按钮：Canvas 上把地图海报＋网址二维码合成一张图，弹窗里预览，
 // 点「保存图片」下载 PNG 到手机相册。全程浏览器本地生成，不走服务器。
 function setupShare(): void {
-  const btn = document.querySelector<HTMLButtonElement>('[data-share-open]');
+  const btns = Array.from(document.querySelectorAll<HTMLElement>('[data-share-open]'));
   const modal = document.querySelector<HTMLElement>('[data-share-modal]');
-  if (!btn || !modal) return;
+  if (!btns.length || !modal) return;
   const img = modal.querySelector<HTMLImageElement>('[data-share-img]');
   const saveBtn = modal.querySelector<HTMLAnchorElement>('[data-share-save]');
   const closeBtn = modal.querySelector<HTMLButtonElement>('[data-share-close]');
@@ -401,7 +401,8 @@ function setupShare(): void {
     return canvas.toDataURL('image/png');
   };
 
-  btn.addEventListener('click', async () => {
+  btns.forEach((btn) => btn.addEventListener('click', async (event) => {
+    event.preventDefault();
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     if (status) status.textContent = '正在生成分享图…';
@@ -419,7 +420,7 @@ function setupShare(): void {
     } catch {
       if (status) status.textContent = '生成失败，请检查网络后重试。';
     }
-  });
+  }));
 
   const close = () => {
     modal.classList.remove('is-open');
