@@ -18,7 +18,7 @@
     <style>
       /* 首页就是一张大地图：整页只有图，没有其他文字，留白多，内容逐步往图里加。 */
       html, body { background: #fdf9ef; }
-      body { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+      body { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
       .map-wrap {
         position: relative;
         max-width: 720px;
@@ -42,6 +42,16 @@
       .map-wrap .hs-story { left: 74%; top: 57%; width: 13%; height: 17%; }
       /* 二维码 -> 首页（手机长按扫码进站） */
       .map-wrap .hs-qr { left: 33.3%; top: 83.6%; width: 16.5%; height: 14.2%; }
+      footer {
+        width: 100%;
+        max-width: 720px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #8a7d67;
+        padding: 1.2rem 1rem 1.6rem;
+      }
+      footer a { color: inherit; }
+      footer .version { margin: 0.3rem 0 0; }
     </style>
   </head>
   <body>
@@ -56,6 +66,9 @@
       <a class="hotspot hs-story" href="./story.html" title="Meow传：故事"></a>
       <a class="hotspot hs-qr" href="./index.html" title="扫码进入 meow.imeeting.club"></a>
     </main>
+    <footer>
+      <p><a href="https://github.com/iMeetingClub/Meow" target="_blank" rel="noopener">欢迎改进</a></p>
+    </footer>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
