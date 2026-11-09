@@ -1081,3 +1081,27 @@ footer .oneko-note { font-size: 0.82rem; opacity: 0.8; }
   .season-dot { animation: none; }
   .progress-track span { transition: none; }
 }
+
+/* 回到大地图：每页右下角固定一个小地图按钮，点了一口气回首页大地图。 */
+.map-home-btn {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px 8px 8px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(74, 66, 56, 0.12);
+  color: var(--ink);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+.map-home-btn img {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
