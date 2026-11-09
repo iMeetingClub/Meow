@@ -391,13 +391,13 @@ function setupShare(): void {
       loadImage(QR_SRC),
     ]);
     const canvas = document.createElement('canvas');
-    canvas.width = 1440;
-    canvas.height = 1680;
+    canvas.width = 1080;
+    canvas.height = 1260;
     const ctx = canvas.getContext('2d');
     if (!ctx) throw new Error('Canvas 不可用');
-    ctx.drawImage(poster, 0, 0, 1440, 1680);
-    // 二维码放在底部中间空地（250px，y1420 起），不盖门口猫的前爪和花。
-    ctx.drawImage(qr, 595, 1420, 250, 250);
+    ctx.drawImage(poster, 0, 0, 1080, 1260);
+    // 二维码放在底部中间空地（188px，y1065 起），不盖门口猫的前爪和花。
+    ctx.drawImage(qr, 446, 1065, 188, 188);
     return canvas.toDataURL('image/png');
   };
 

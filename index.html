@@ -178,21 +178,23 @@
       footer .version { margin: 0.3rem 0 0; }
 
       /* 分享按钮：右下角悬浮，点击生成带二维码的分享图 */
+      /* 分享也用小点点：右下角一颗橘色点点在闪，点它邀请别人来玩 */
       .share-btn {
         position: fixed;
-        right: 16px;
-        bottom: 16px;
+        right: 20px;
+        bottom: 20px;
         z-index: 200;
+        width: 18px;
+        height: 18px;
         border: none;
-        border-radius: 999px;
-        padding: 0.7rem 1.2rem;
-        font-size: 1rem;
+        border-radius: 50%;
+        padding: 0;
         background: #e8821e;
-        color: #fff;
-        box-shadow: 0 4px 14px rgba(232, 130, 30, 0.4);
+        box-shadow: 0 0 0 4px rgba(232, 130, 30, 0.25);
         cursor: pointer;
+        animation: dot-pulse 1.8s ease-in-out infinite;
       }
-      .share-btn:active { transform: scale(0.96); }
+      .share-btn:active { transform: scale(1.2); }
       /* 分享弹窗：遮罩＋居中卡片，图实时生成后放进来 */
       .share-modal {
         position: fixed;
@@ -269,7 +271,7 @@
       <p><a href="https://github.com/iMeetingClub/Meow" target="_blank" rel="noopener">欢迎改进</a></p>
     </footer>
 
-    <button class="share-btn" type="button" data-share-open>分享 ↗</button>
+    <button class="share-btn" type="button" data-share-open aria-label="分享这张图" title="分享这张图"></button>
     <div class="share-modal" data-share-modal aria-hidden="true" role="dialog" aria-label="分享图">
       <div class="share-card">
         <img data-share-img alt="分享图生成中…" />
