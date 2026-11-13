@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="meow 生活 — 一张大地图就是所有去处：点小猫看喵花名，点大树看喵星事，点屋顶看猫屋计划，点右边小猫看故事。" />
+    <meta name="description" content="meow 生活 — 一张大地图就是所有去处：点小猫看喵花名，点大树看喵星事，点屋顶看猫屋计划，点右边小猫看故事，点木屋看造猫屋。" />
     <title>meow 生活</title>
     <!-- PWA：可以安装为手机 web app -->
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -159,6 +159,8 @@
       .map-wrap .hs-act { left: 31%; top: 57%; width: 24%; height: 18%; }
       /* 屋顶（锤子、钉子、木板）-> 猫屋计划（季节页） */
       .map-wrap .hs-tools { left: 21%; top: 41%; width: 69%; height: 12%; }
+      /* 木屋侧墙 -> 造猫屋（Special 季度活动） */
+      .map-wrap .hs-activity { left: 63%; top: 54%; width: 14%; height: 11%; }
       footer {
         width: 100%;
         max-width: 720px;
@@ -229,6 +231,7 @@
       <a class="hotspot hs-cat-r" href="./story.html" title="Meow传：故事"><span class="dot"></span></a>
       <a class="hotspot hs-act" href="#" data-share-open title="分享这张图：邀请别人来玩"><span class="dot"></span></a>
       <a class="hotspot hs-tools" href="./season.html" title="猫屋计划：修砌中的猫屋"><span class="dot"></span></a>
+      <a class="hotspot hs-activity" href="./activity.html" title="造猫屋：Special 季度活动"><span class="dot"></span></a>
       <!-- 贴合轮廓的橘色描边（手绘描摹，坐标按 1440x1680 原图） -->
       <svg class="outlines" viewBox="0 0 1440 1680" aria-hidden="true">
         <path class="outline-cat-l glow" d="M 78,1248 C 58,1270 48,1310 52,1360 C 55,1400 62,1435 80,1455 C 105,1478 180,1482 260,1472 C 310,1466 350,1445 360,1415 C 368,1385 360,1350 345,1325 C 335,1305 325,1285 310,1270 C 295,1255 280,1250 265,1258 C 230,1270 170,1268 130,1262 C 105,1258 88,1252 78,1248 Z" />

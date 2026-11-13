@@ -1,0 +1,78 @@
+<!doctype html>
+<!--
+  造猫屋活动页（2026-11-13，FC 已定：文件名 activity.html；首页新加热点，屋顶仍是猫屋季入口；内容先不补，先看整体画面结构）
+  结构照 season.html（猫屋季）：<main class="page"> → header.page-head → 各节 → 页脚 → .map-home-btn。
+  内容只用 FC 已定的口径（2026-11-09/11-10）：Special 季度活动、11/16–18、素社小院、
+  无固定规划——聚集、观察环境、发现需求、洞悉问题；来自生活的 PBL：孩子喜欢跟猫玩，
+  怎么让猫更好地生活，来到素社小院时就能和猫玩，建立正向循环。
+  没有编时间、没有编日程、没有编参与方式——这些 FC 没定，留空问他，不猜。
+  上站清单：① 文件名 activity.html；② 加进 vite.config.ts rollupOptions.input；③ 首页加热点
+  （index.html 和 map.html 两处）；④ 加进 public/sw.js PRECACHE 并升 CACHE_NAME；
+  ⑤ 别复用 [data-season-status-text]（它写死 11/15–19），本页不挂任何日期状态属性；
+  ⑥ 猫屋季页已覆盖 11/15 建设 + 11/16–18，本页只讲「造猫屋」这个具体 PBL，不重复。
+-->
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="造猫屋 · meow 生活 — 11/16–18，素社小院。一个来自生活的 PBL：孩子们喜欢跟猫玩，怎么让猫更好地生活。" />
+    <title>造猫屋 · meow 生活</title>
+    <!-- PWA：可以安装为手机 web app -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#ffc53d" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="meow 生活" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="page-head">
+        <a class="back-link" href="/index.html">← 回整点meow活</a>
+        <p class="eyebrow">Special · 季度活动</p>
+        <h1>造猫屋</h1>
+        <p class="lede">11/16–18，素社小院。没有课表——孩子们直接来，跟猫待在一起，看猫需要什么，再一起想办法。</p>
+      </header>
+
+      <section>
+        <p class="section-no">01 / 这三天，怎么过</p>
+        <h2>没有规划，就是规划</h2>
+        <p>造猫屋不排课表、不分小组、不设任务单。三天就做四件事，顺序也不锁死：</p>
+        <ol>
+          <li><strong>聚集</strong>——来到素社小院，先跟猫玩起来。</li>
+          <li><strong>观察环境</strong>——猫睡哪儿、躲哪儿、从哪儿进出，在小院里走一走、看一看。</li>
+          <li><strong>发现需求</strong>——猫缺什么、哪儿住得不舒服，孩子们自己说出来。</li>
+          <li><strong>洞悉问题</strong>——缺的东西，哪些是我们可以动手做的。</li>
+        </ol>
+        <p>11/15 是建设日（见<a href="./season.html">猫屋季</a>），造猫屋从 11/16 开始，接在建设好的小院里发生。</p>
+      </section>
+
+      <section>
+        <p class="section-no">02 / 为什么是这个题目</p>
+        <h2>一个来自生活的 PBL</h2>
+        <p>孩子们喜欢跟猫玩。但怎么让猫更好地生活？来到素社小院的时候，就能和猫玩——玩着玩着，猫住得更好了，孩子也更会照顾一个生命了。</p>
+        <p>这就是这三天想建立的正向循环：喜欢猫 → 看见猫的需要 → 动手让猫住得更好 → 更喜欢猫。</p>
+      </section>
+
+      <section>
+        <p class="section-no">03 / 来之前要知道的</p>
+        <h2>三件事</h2>
+        <ul>
+          <li><strong>时间：</strong>11/16–18，孩子们的秋假。</li>
+          <li><strong>地点：</strong>素社小院，南塘。</li>
+          <li><strong>带什么：</strong>还没定——等 FC 一句话再写在这里。</li>
+        </ul>
+      </section>
+
+      <footer>
+        <p>meow 生活 · 南塘，安徽阜阳</p>
+        <p class="version"></p>
+      </footer>
+    </main>
+    <a class="map-home-btn" href="/index.html">回到地图</a>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

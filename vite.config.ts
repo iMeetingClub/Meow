@@ -10,7 +10,7 @@ const pkg = JSON.parse(
   readFileSync(new URL('./package.json', import.meta.url), 'utf-8'),
 ) as { version?: string }
 
-// 多页：整点meow活（index）＋Meow传（story）＋与meow星事（stories）＋Meow名大噪（cats）＋猫屋地图（map）＋猫屋季（season）。
+// 多页：整点meow活（index）＋Meow传（story）＋与meow星事（stories）＋Meow名大噪（cats）＋猫屋地图（map）＋猫屋季（season）＋造猫屋活动（activity）。
 // 六个页面共用 src/main.ts，里面的逻辑按页面上有的元素才运行。
 export default defineConfig({
   base: './',
@@ -23,6 +23,7 @@ export default defineConfig({
         cats: resolve(__dirname, 'cats.html'),
         map: resolve(__dirname, 'map.html'),
         season: resolve(__dirname, 'season.html'),
+        activity: resolve(__dirname, 'activity.html'),
       },
     },
   },
