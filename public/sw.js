@@ -1,4 +1,4 @@
-/* meow 生活 — service worker（v0.9.3）
+/* meow 生活 — service worker（v0.9.6）
    缓存策略（2026-11-09 修：旧版 cache-first 把页面也缓存死了，
    CACHE_NAME 又一直停在 v0.9.0 没跟着版号走，导致新版推上去后
    浏览器还拿旧缓存，横幅出不来、页脚还是旧链接）：
@@ -9,12 +9,13 @@
    - CACHE_NAME 跟着 package.json 版号走，发新版时一起改，
      activate 会清掉旧缓存。 */
 
-const CACHE_NAME = 'cat-planet-v0.9.3';
+const CACHE_NAME = 'cat-planet-v0.9.6';
 const PRECACHE = [
   '/story.html',
   '/stories.html',
   '/cats.html',
   '/season.html',
+  '/activity.html',
   '/oneko.gif',
   '/illustrations/hero-cat-house.webp',
   '/illustrations/cat-mother-youhu.webp',
